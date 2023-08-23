@@ -24,3 +24,10 @@ C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.man
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\obj\Debug\net7.0\webapi.filmes.manha.pdb
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\obj\Debug\net7.0\webapi.filmes.manha.genruntimeconfig.cache
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\obj\Debug\net7.0\ref\webapi.filmes.manha.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.filmes.manha\webapi.filmes.manha\obj\Debug\net7.0\webapi.filmes.manha.csproj.CopyComplete

@@ -5,7 +5,7 @@ namespace webapi.filmes.manha.Repositories
 {
     public class FilmeRepository : IFilmeRepository
     {
-        private string StringConexao = "Data Source = NOTE04-S14; Intital Catalog = Filmes; User Id = SA; Pwd = Senai@134";
+        private string StringConexao = "Data Source = NOTE04-S14; Initial Catalog = Filmes; User Id = sa; Pwd = Senai@134";
         public void AtualizarIdCorpo(FilmeDomain filme)
         {
             throw new NotImplementedException();
