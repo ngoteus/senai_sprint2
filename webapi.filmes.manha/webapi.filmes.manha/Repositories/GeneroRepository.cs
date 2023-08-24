@@ -17,7 +17,7 @@ namespace webapi.filmes.manha.Repositories
         ///     -Windows : Integrated Security =  true
         ///     -SqlServer : User Id = sa; Pwd = Senha
         /// </summary>
-        private string StringConexao = "Data Source = NOTE04-S14; Initial Catalog = Filmes; User Id = sa; Pwd = Senai@134";
+        private string StringConexao = "Data Source =NOTE04-S14; Initial Catalog =Filmes; User Id = sa; Pwd = Senai@134";
 
 
         public void AtualizarIdCorpo(GeneroDomain genero)
@@ -35,9 +35,28 @@ namespace webapi.filmes.manha.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Cadastrar um novo genero
+        /// </summary>
+        /// <param name="novoGenero"> Objeto com as informacoes que serao cadastradas</param>
         public void Cadastrar(GeneroDomain novoGenero)
         {
-            throw new NotImplementedException();
+            //Declara a conexao passando a string de conexao como parametro
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                //Declara a query que sera executada
+             string queryInsert = "INSERT INTO Genero(Nome) VALUES ('" + novoGenero.Nome + "')";
+
+                //Declara o SQLCommand passando a query que sera executada e a conexao com o bd
+                using (SqlCommand cmd = new SqlCommand(queryInsert,con))
+                {
+                    //Abre a conexao com o banco de dados
+                    con.Open();
+
+                    //executar a query (queryInsert)
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Deletar(int id)
@@ -52,7 +71,7 @@ namespace webapi.filmes.manha.Repositories
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 //Declara a instrucao a ser executada
-             string  querySelectAll = "SELECT * IdGenero, Nome From Genero";
+             string  querySelectAll = "SELECT IdGenero, Nome FROM Genero";
 
                 //Abre a conexao com o banco de dados
                 con.Open();
@@ -82,3 +101,6 @@ namespace webapi.filmes.manha.Repositories
         }
     }
 }
+
+
+

@@ -9,8 +9,8 @@ namespace webapi.filmes.manha.Domains
     {
        public int IdGenero { get; set; }
         [Required(ErrorMessage = "O nome do Gênero é obrigatorio")]
-        public string Nome { get; set; }
-
+        public string? Nome { get; set; }
+         
         
 
 
