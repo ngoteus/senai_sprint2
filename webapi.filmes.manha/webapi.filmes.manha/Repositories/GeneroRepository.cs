@@ -30,9 +30,21 @@ namespace webapi.filmes.manha.Repositories
             throw new NotImplementedException();
         }
 
-        public GeneroDomain BuscarPorId(int id)
+        public void BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string querySearch = "SELECT FROM Genero WHERE IdGenero = @Id ";
+
+                using (SqlCommand cmd = new SqlCommand (querySearch,con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>
@@ -45,11 +57,14 @@ namespace webapi.filmes.manha.Repositories
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 //Declara a query que sera executada
-             string queryInsert = "INSERT INTO Genero(Nome) VALUES ('" + novoGenero.Nome + "')";
+             string queryInsert = "INSERT INTO Genero(Nome) VALUES (@Nome)";
 
                 //Declara o SQLCommand passando a query que sera executada e a conexao com o bd
                 using (SqlCommand cmd = new SqlCommand(queryInsert,con))
                 {
+                    //Passa o valor do parametro @Nome
+                    cmd.Parameters.AddWithValue("@Nome", novoGenero.Nome);
+
                     //Abre a conexao com o banco de dados
                     con.Open();
 
@@ -61,7 +76,19 @@ namespace webapi.filmes.manha.Repositories
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryDelete = "DELETE FROM Genero WHERE IdGenero = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryDelete,con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<GeneroDomain> ListarTodos()

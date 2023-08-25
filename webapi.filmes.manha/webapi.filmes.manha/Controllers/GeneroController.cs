@@ -78,6 +78,39 @@ namespace webapi.filmes.manha.Controllers
 
             
         }
+        [HttpDelete]
+
+        public IActionResult Delete(int id) 
+        {
+            try
+            {
+                _generoRepository.Deletar(id);
+
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetId(int id) 
+        {
+            try
+            {
+                _generoRepository.BuscarPorId(id);
+
+                return StatusCode(204);
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro.Message);
+            }
+            
+        }
     }
 
 }
