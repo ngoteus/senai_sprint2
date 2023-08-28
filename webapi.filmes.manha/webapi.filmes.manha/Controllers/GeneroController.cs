@@ -96,13 +96,18 @@ namespace webapi.filmes.manha.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetId(int id) 
+        public IActionResult GetById(int id) 
         {
             try
             {
-                _generoRepository.BuscarPorId(id);
+                GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);
 
-                return StatusCode(204);
+                if (generoBuscado == null)
+                {
+                    return NotFound("Nenhum genero foi encontrado!");
+                }
+
+                return Ok(generoBuscado);
             }
             catch (Exception erro)
             {
