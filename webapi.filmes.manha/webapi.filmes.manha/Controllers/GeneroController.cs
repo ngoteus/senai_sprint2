@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using webapi.filmes.manha.Domains;
 using webapi.filmes.manha.Interfaces;
 using webapi.filmes.manha.Repositories;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace webapi.filmes.manha.Controllers
 {
@@ -64,8 +65,8 @@ namespace webapi.filmes.manha.Controllers
             try
             {
 
-                 //Fazendo a chamada para o metodo cadastrar passando o objeto como parametro
-                 _generoRepository.Cadastrar(novoGenero);
+                //Fazendo a chamada para o metodo cadastrar passando o objeto como parametro
+                _generoRepository.Cadastrar(novoGenero);
 
                 //retorna um status code 201 - Created
                 return StatusCode(201);
@@ -76,11 +77,11 @@ namespace webapi.filmes.manha.Controllers
                 return BadRequest(erro.Message);
             }
 
-            
+
         }
         [HttpDelete]
 
-        public IActionResult Delete(int id) 
+        public IActionResult Delete(int id)
         {
             try
             {
@@ -96,7 +97,7 @@ namespace webapi.filmes.manha.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id) 
+        public IActionResult GetById(int id)
         {
             try
             {
@@ -114,8 +115,67 @@ namespace webapi.filmes.manha.Controllers
 
                 return BadRequest(erro.Message);
             }
+
+        }
+
+
+
+
+
+        [HttpPut]
+        public IActionResult PutIdBody(GeneroDomain genero)
+        {
+            try
+            {
+                GeneroDomain generoBuscado = _generoRepository.BuscarPorId(genero.IdGenero);
+
+                if (generoBuscado == null)
+                {
+                    try
+                    {
+                        _generoRepository.AtualizarIdCorpo(genero);
+
+                    }
+                    catch (Exception erro)
+                    {
+
+                        return BadRequest(erro.Message);
+                    }
+                    //return NotFound("Geenero nao encontrado!");
+                }
+
+                return NotFound("Geenero nao encontrado!");
+
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+
+
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchIdUrl(int id, GeneroDomain genero)
+        {
+            GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);
+            try
+            {
+                if (generoBuscado == null)
+                {
+                    return NotFound("Genero Nao encontrado");
+                }
+                _generoRepository.AtualizarIdUrL(id, genero);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
             
         }
+
+        //[HttpPut]
+        //public IActionResult PutIdUrl
     }
 
 }

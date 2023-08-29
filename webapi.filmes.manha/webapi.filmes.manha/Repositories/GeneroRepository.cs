@@ -20,40 +20,92 @@ namespace webapi.filmes.manha.Repositories
         private string StringConexao = "Data Source =NOTE04-S14; Initial Catalog =Filmes; User Id = sa; Pwd = Senai@134";
 
 
+        //public void AtualizarIdCorpo(int id, GeneroDomain genero)
+        //{
+        //    using (SqlConnection con = new SqlConnection(StringConexao))
+        //    {
+        //        string queryUpdateIdBody = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
+
+        //        con.Open();
+
+                
+
+        //        using (SqlCommand cmd = new SqlCommand(queryUpdateIdBody, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Nome", genero.Nome);
+        //            cmd.Parameters.AddWithValue("@IdGenero", genero.IdGenero);
+        //            con.Open();
+
+        //            cmd.ExecuteReader();
+        //        }
+        //    }
+        //}
+
         public void AtualizarIdCorpo(GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryUpdateIdBody = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
+
+                con.Open();
+
+
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdateIdBody, con))
+                {
+                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
+                    cmd.Parameters.AddWithValue("@IdGenero", genero.IdGenero);
+                    con.Open();
+
+                    cmd.ExecuteReader();
+                }
+            }
         }
 
         public void AtualizarIdUrL(int id, GeneroDomain genero)
         {
-            using (SqlConnection cmd = new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(StringConexao))
             {
+                string queryUpdateIdUrl = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
 
-
-                BuscarPorId(id);
-                string queryUpdate = "SELECT IdGenero, Nome FROM Genero WHERE IdGenero = @IdGenero";
                 con.Open();
 
-                SqlDataReader rdr;
-
-                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                using (SqlCommand cmd = new SqlCommand(queryUpdateIdUrl, con))
                 {
+                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
                     cmd.Parameters.AddWithValue("@IdGenero", id);
+                    con.Open();
 
-                    rdr = cmd.ExecuteReader();
-
-
-
-
-
+                    cmd.ExecuteReader();
                 }
             }
+        }
+
+        //public void AtualizarIdUrL(int id, GeneroDomain genero)
+        //{
+        //    using (SqlConnection con = new SqlConnection(StringConexao))
+        //    {
+
+        //        AtualizarIdUrL(id);
+
+        //        string queryUpdate = "SELECT IdGenero, Nome FROM Genero WHERE IdGenero = @IdGenero";
+        //        con.Open();
+
+        //        SqlDataReader rdr;
+
+        //        using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@IdGenero", id);
+
+        //            rdr = cmd.ExecuteReader();
+
+        //        }
+        //    }
 
 
 
 
-            public GeneroDomain BuscarPorId(int id)
+        public GeneroDomain BuscarPorId(int id)
             {
 
                 using (SqlConnection con = new SqlConnection(StringConexao))
