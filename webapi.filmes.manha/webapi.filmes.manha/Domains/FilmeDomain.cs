@@ -4,7 +4,7 @@ namespace webapi.filmes.manha.Domains
 {
     public class FilmeDomain:GeneroDomain
     {
-        public string? IdFilme { get; set; }
+        public int IdFilme { get; set; }
 
         [Required(ErrorMessage = "O Genero e obrigatorio")]
         public string? Titulo { get; set; } 

@@ -65,16 +65,17 @@ namespace webapi.filmes.manha.Repositories
         public void AtualizarIdUrL(int id, GeneroDomain genero)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
-            {
-                string queryUpdateIdUrl = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
-
+            {       
                 con.Open();
 
+                string queryUpdateIdUrl = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
+
+                
+
                 using (SqlCommand cmd = new SqlCommand(queryUpdateIdUrl, con))
-                {
-                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
+                {  
                     cmd.Parameters.AddWithValue("@IdGenero", id);
-                    con.Open();
+                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
 
                     cmd.ExecuteReader();
                 }
@@ -112,10 +113,10 @@ namespace webapi.filmes.manha.Repositories
                 {
                     string querySearch = "SELECT IdGenero, Nome FROM Genero WHERE IdGenero = @IdGenero ";
 
-                    con.Open();
 
-                    SqlDataReader rdr;
 
+                SqlDataReader rdr;
+                        //con.Open();
                     using (SqlCommand cmd = new SqlCommand(querySearch, con))
                     {
                         cmd.Parameters.AddWithValue("@IdGenero", id);

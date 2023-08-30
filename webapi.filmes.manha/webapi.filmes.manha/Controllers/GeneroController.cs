@@ -161,15 +161,25 @@ namespace webapi.filmes.manha.Controllers
             GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);
             try
             {
-                if (generoBuscado == null)
+                if (generoBuscado != null)
                 {
-                    return NotFound("Genero Nao encontrado");
+                    try
+                    {
+                        _generoRepository.AtualizarIdUrL(id, genero);
+                         return Ok();
+                    }
+                    catch (Exception erro)
+                    {
+
+                        return BadRequest(erro.Message);
+                    }
+                    
                 }
-                _generoRepository.AtualizarIdUrL(id, genero);
+                throw new Exception();
             }
-            catch (Exception erro)
+            catch
             {
-                return BadRequest(erro.Message);
+                return NotFound("Genero nao encontrado!");
             }
             
         }
