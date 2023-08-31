@@ -5,9 +5,22 @@ using webapi.filmes.manha.Repositories;
 
 namespace webapi.filmes.manha.Controllers
 {
+    //Define a rota de uma requisicao sera no seguinte formato
+    //dominio/api/nomeController
+    //ex : http://localhost:5000/api/genero
+    [Route("api/[controller]")]
+
+    //Define que e um controlador de api
+    [ApiController]
+
+    //Define que o tipo de resposta da api sera no formato JSON
+    [Produces("application/json")]
+
+    //Metodo controlador que herda da controller base
+    //Onde sera criado os Endpoints(rotas)
     public class FilmeController : ControllerBase
     {
-        private FilmeRepository _filmeRepository { get; set; }
+        private IFilmeRepository _filmeRepository { get; set; }
 
         public FilmeController()
         {
@@ -50,11 +63,11 @@ namespace webapi.filmes.manha.Controllers
             try
             {
                 //retorna a lista resultante da requisição e seu status code de ok
-                if (_filmeRepository.BuscarPorId(id) == null)
+                if (_filmeRepository.BuscaPorId(id) == null)
                 {
                     return StatusCode(404, "Objeto não encontrado.");
                 }
-                return Ok(_filmeRepository.BuscarPorId(id));
+                return Ok(_filmeRepository.BuscaPorId(id));
 
             }
             catch (Exception Erro)
@@ -75,7 +88,7 @@ namespace webapi.filmes.manha.Controllers
         {
             try
             {
-                _filmeRepository.Cadastrar(novoFilme);
+                _filmeRepository.CadastrarFilme(novoFilme);
 
                 return StatusCode(201, novoFilme);
             }
@@ -96,7 +109,7 @@ namespace webapi.filmes.manha.Controllers
         {
             try
             {
-                FilmeDomain filmeBuscado = _filmeRepository.BuscarPorId(filme.IdFilme);
+                FilmeDomain filmeBuscado = _filmeRepository.BuscaPorId(filme.IdFilme);
 
                 if (filmeBuscado != null)
                 {
@@ -149,12 +162,12 @@ namespace webapi.filmes.manha.Controllers
         /// <param name="id">Id do filme que será atualizado</param>
         /// <param name="filme">Objeto que sera alterado</param>
         /// <returns>Status code de acordo com o resultado da operação</returns>
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public IActionResult EditFilmeById(int id, FilmeDomain filme)
         {
             try
             {
-                FilmeDomain filmeBuscado = _filmeRepository.BuscarPorId(id);
+                FilmeDomain filmeBuscado = _filmeRepository.BuscaPorId(id);
 
                 if (filmeBuscado != null)
                 {

@@ -7,6 +7,8 @@ namespace webapi.filmes.manha.Repositories
     public class FilmeRepository : IFilmeRepository
     {
         private string StringConexao = "Data Source = NOTE04-S14; Initial Catalog = Filmes; User Id = sa; Pwd = Senai@134";
+
+
         public void AtualizarIdCorpo(FilmeDomain filme)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
@@ -54,7 +56,7 @@ namespace webapi.filmes.manha.Repositories
             }
         }
 
-        public FilmeDomain BuscarPorId(int id)
+        public FilmeDomain BuscaPorId(int id)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
@@ -98,17 +100,81 @@ namespace webapi.filmes.manha.Repositories
                 }
 
             }
-
         }
 
+        //public FilmeDomain BuscarPorId(int id)
+        //{
+            //using (SqlConnection con = new SqlConnection(StringConexao))
+            //{
+            //    // declara a instrução a ser utilizada no sql
+            //    string querySelectById = "SELECT Filme.IdFilme, Filme.IdGenero, Filme.Titulo, Genero.Nome, Genero.IdGenero FROM Filme LEFT JOIN Genero ON Filme.IdGenero = Genero.IdGenero WHERE IdFilme = 1";
 
-        public void Cadastrar(FilmeDomain filme)
+            //    // Abre a conexão com o banco de dados
+            //    con.Open();
+
+            //    SqlDataReader rdr;
+
+            //    // Declara o sqlcommand que fará uma consulta utilizando o querySelectById e a conexão desejada
+            //    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+            //    {
+
+            //        rdr = cmd.ExecuteReader();
+
+            //        if (rdr.Read())
+            //        {
+            //            FilmeDomain filmeBuscado = new FilmeDomain()
+            //            {
+            //                IdFilme = Convert.ToInt32(rdr[0]),
+
+            //                IdGenero = Convert.ToInt32(rdr[1]),
+
+            //                Titulo = rdr["Titulo"].ToString(),
+
+            //                Genero = new GeneroDomain()
+            //                {
+            //                    IdGenero = Convert.ToInt32(rdr[4]),
+
+            //                    Nome = rdr["Nome"].ToString()
+            //                }
+
+            //            };
+
+            //            return filmeBuscado;
+
+            //        }
+            //        return null;
+            //    }
+
+            //}
+
+        //}
+
+
+        //public void Cadastrar(FilmeDomain filme)
+        //{
+        //    using (SqlConnection con = new SqlConnection(StringConexao))
+        //    {
+        //        con.Open();
+
+        //        string queryInsert = "INSERT INTO Filme(IdGenero, Tiutlo) VALUES(@IdGenero, @Titulo)";
+
+        //        using (SqlCommand cmd = new SqlCommand(queryInsert, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Titulo", filme.Titulo);
+        //            cmd.Parameters.AddWithValue("@IdGenero", filme.IdGenero);
+
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+
+        public void CadastrarFilme(FilmeDomain filme)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 con.Open();
 
-                string queryInsert = "INSERT INTO Filme(IdGenero, Tiutlo) VALUES(@IdGenero, @Titulo)";
+                string queryInsert = "INSERT INTO Filme(IdGenero, Titulo) VALUES(@IdGenero, @Titulo)";
 
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
@@ -174,13 +240,13 @@ namespace webapi.filmes.manha.Repositories
 
                             IdGenero = Convert.ToInt32(rdr[1]),
 
-                            Titulo = rdr["Titulo"].ToString(),
+                            Titulo = rdr[2].ToString(),
 
                             Genero = new GeneroDomain()
                             {
                                 IdGenero = Convert.ToInt32(rdr[4]),
 
-                                Nome = rdr["Nome"].ToString()
+                                Nome = rdr[3].ToString()
                             }
 
                         };

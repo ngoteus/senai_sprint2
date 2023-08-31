@@ -129,12 +129,12 @@ namespace webapi.filmes.manha.Controllers
             {
                 GeneroDomain generoBuscado = _generoRepository.BuscarPorId(genero.IdGenero);
 
-                if (generoBuscado == null)
+                if (generoBuscado != null)
                 {
                     try
                     {
                         _generoRepository.AtualizarIdCorpo(genero);
-
+                        return Ok();
                     }
                     catch (Exception erro)
                     {
@@ -155,8 +155,8 @@ namespace webapi.filmes.manha.Controllers
 
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult PatchIdUrl(int id, GeneroDomain genero)
+        [HttpPut("{id}")]
+        public IActionResult PutIdUrl(int id, GeneroDomain genero)
         {
             GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);
             try

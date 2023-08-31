@@ -28,7 +28,7 @@ namespace webapi.filmes.manha.Repositories
 
         //        con.Open();
 
-                
+
 
         //        using (SqlCommand cmd = new SqlCommand(queryUpdateIdBody, con))
         //        {
@@ -45,7 +45,7 @@ namespace webapi.filmes.manha.Repositories
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string queryUpdateIdBody = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
+                string queryUpdateIdBody = "UPDATE Genero SET Nome = @Nome WHERE IdGenero = @IdGenero";
 
                 con.Open();
 
@@ -55,9 +55,9 @@ namespace webapi.filmes.manha.Repositories
                 {
                     cmd.Parameters.AddWithValue("@Nome", genero.Nome);
                     cmd.Parameters.AddWithValue("@IdGenero", genero.IdGenero);
-                    con.Open();
 
-                    cmd.ExecuteReader();
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -65,19 +65,19 @@ namespace webapi.filmes.manha.Repositories
         public void AtualizarIdUrL(int id, GeneroDomain genero)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
-            {       
+            {
                 con.Open();
 
-                string queryUpdateIdUrl = "UPDATE IdGenero SET Nome = @Nome FROM Genero WHERE IdGenero = @IdGenero";
+                string queryUpdateIdUrl = "UPDATE Genero SET Nome = @Nome WHERE IdGenero = @IdGenero";
 
-                
+
 
                 using (SqlCommand cmd = new SqlCommand(queryUpdateIdUrl, con))
-                {  
+                {
                     cmd.Parameters.AddWithValue("@IdGenero", id);
                     cmd.Parameters.AddWithValue("@Nome", genero.Nome);
 
-                    cmd.ExecuteReader();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -107,126 +107,127 @@ namespace webapi.filmes.manha.Repositories
 
 
         public GeneroDomain BuscarPorId(int id)
-            {
+        {
 
-                using (SqlConnection con = new SqlConnection(StringConexao))
-                {
-                    string querySearch = "SELECT IdGenero, Nome FROM Genero WHERE IdGenero = @IdGenero ";
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string querySearch = "SELECT IdGenero, Nome FROM Genero WHERE IdGenero = @IdGenero ";
 
 
 
                 SqlDataReader rdr;
-                        //con.Open();
-                    using (SqlCommand cmd = new SqlCommand(querySearch, con))
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(querySearch, con))
+                {
+                    cmd.Parameters.AddWithValue("@IdGenero", id);
+
+                    rdr = cmd.ExecuteReader();
+
+
+
+                    if (rdr.Read())
                     {
-                        cmd.Parameters.AddWithValue("@IdGenero", id);
-
-                        rdr = cmd.ExecuteReader();
-
-
-
-                        if (rdr.Read())
+                        GeneroDomain generoBuscado = new GeneroDomain()
                         {
-                            GeneroDomain generoBuscado = new GeneroDomain()
-                            {
-                                IdGenero = Convert.ToInt32(rdr["IdGenero"]),
+                            IdGenero = Convert.ToInt32(rdr["IdGenero"]),
 
-                                Nome = rdr["Nome"].ToString()
-                            };
-                            return generoBuscado;
-                            //listaGenero.Add(genero);
-                        }
-
-                        //GeneroBuscado = listaGenero.First(j => j.IdGenero == id);
-
-                        return null;
+                            Nome = rdr["Nome"].ToString()
+                        };
+                        return generoBuscado;
+                        //listaGenero.Add(genero);
                     }
-                }
 
-            }
+                    //GeneroBuscado = listaGenero.First(j => j.IdGenero == id);
 
-
-            /// <summary>
-            /// Cadastrar um novo genero
-            /// </summary>
-            /// <param name="novoGenero"> Objeto com as informacoes que serao cadastradas</param>
-            public void Cadastrar(GeneroDomain novoGenero)
-            {
-                //Declara a conexao passando a string de conexao como parametro
-                using (SqlConnection con = new SqlConnection(StringConexao))
-                {
-                    //Declara a query que sera executada
-                    string queryInsert = "INSERT INTO Genero(Nome) VALUES (@Nome)";
-
-                    //Declara o SQLCommand passando a query que sera executada e a conexao com o bd
-                    using (SqlCommand cmd = new SqlCommand(queryInsert, con))
-                    {
-                        //Passa o valor do parametro @Nome
-                        cmd.Parameters.AddWithValue("@Nome", novoGenero.Nome);
-
-                        //Abre a conexao com o banco de dados
-                        con.Open();
-
-                        //executar a query (queryInsert)
-                        cmd.ExecuteNonQuery();
-                    }
+                    return null;
                 }
             }
 
-            public void Deletar(int id)
+        }
+
+
+        /// <summary>
+        /// Cadastrar um novo genero
+        /// </summary>
+        /// <param name="novoGenero"> Objeto com as informacoes que serao cadastradas</param>
+        public void Cadastrar(GeneroDomain novoGenero)
+        {
+            //Declara a conexao passando a string de conexao como parametro
+            using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                using (SqlConnection con = new SqlConnection(StringConexao))
+                //Declara a query que sera executada
+                string queryInsert = "INSERT INTO Genero(Nome) VALUES (@Nome)";
+
+                //Declara o SQLCommand passando a query que sera executada e a conexao com o bd
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
-                    string queryDelete = "DELETE FROM Genero WHERE IdGenero = @ID";
-
-                    using (SqlCommand cmd = new SqlCommand(queryDelete, con))
-                    {
-                        cmd.Parameters.AddWithValue("@ID", id);
-
-                        con.Open();
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-
-            public List<GeneroDomain> ListarTodos()
-            {
-                List<GeneroDomain> listaGeneros = new List<GeneroDomain>();
-
-                using (SqlConnection con = new SqlConnection(StringConexao))
-                {
-                    //Declara a instrucao a ser executada
-                    string querySelectAll = "SELECT IdGenero, Nome FROM Genero";
+                    //Passa o valor do parametro @Nome
+                    cmd.Parameters.AddWithValue("@Nome", novoGenero.Nome);
 
                     //Abre a conexao com o banco de dados
                     con.Open();
 
-                    //Declara o sQLDataReadder para percorrer a tabela do banco de dados
-                    SqlDataReader rdr;
-
-                    //Declara o SqlCommando passando a query que sera executada e a conexao com o bd
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        //Executa a query a armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-                        while (rdr.Read())
-                        {
-                            GeneroDomain genero = new GeneroDomain()
-                            {
-                                IdGenero = Convert.ToInt32(rdr[0]),
-
-                                Nome = rdr["Nome"].ToString()
-                            };
-                            listaGeneros.Add(genero);
-                        }
-                    }
+                    //executar a query (queryInsert)
+                    cmd.ExecuteNonQuery();
                 }
-                //Retor
-                return listaGeneros;
             }
         }
+
+        public void Deletar(int id)
+        {
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryDelete = "DELETE FROM Genero WHERE IdGenero = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<GeneroDomain> ListarTodos()
+        {
+            List<GeneroDomain> listaGeneros = new List<GeneroDomain>();
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                //Declara a instrucao a ser executada
+                string querySelectAll = "SELECT IdGenero, Nome FROM Genero";
+
+                //Abre a conexao com o banco de dados
+                con.Open();
+
+                //Declara o sQLDataReadder para percorrer a tabela do banco de dados
+                SqlDataReader rdr;
+
+                //Declara o SqlCommando passando a query que sera executada e a conexao com o bd
+                using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                {
+                    //Executa a query a armazena os dados no rdr
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        GeneroDomain genero = new GeneroDomain()
+                        {
+                            IdGenero = Convert.ToInt32(rdr[0]),
+
+                            Nome = rdr["Nome"].ToString()
+                        };
+                        listaGeneros.Add(genero);
+                    }
+                }
+            }
+            //Retor
+            return listaGeneros;
+        }
     }
+}
 
 
 
