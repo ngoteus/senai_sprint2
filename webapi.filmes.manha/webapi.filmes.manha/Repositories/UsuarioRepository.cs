@@ -23,6 +23,17 @@ namespace webapi.filmes.manha.Repositories
                     cmd.Parameters.AddWithValue("@Senha", Senha);
 
                     rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        UsuarioDomain usuario = new UsuarioDomain
+                        {
+                            IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
+                            Email = rdr["Email"].ToString(),
+                            Permissao = Convert.ToBoolean(rdr["Permissao"])
+                        };
+                        return usuario;
+                    }
+                    return null;
                 }
 
             }

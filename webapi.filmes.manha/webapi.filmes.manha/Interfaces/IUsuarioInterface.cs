@@ -1,7 +1,9 @@
-﻿namespace webapi.filmes.manha.Interfaces
+﻿using webapi.filmes.manha.Domains;
+
+namespace webapi.filmes.manha.Interfaces
 {
     public interface IUsuarioInterface
     {
-        void Login(string Email, string Senha);
+        UsuarioDomain Login(string Email, string Senha);
     }
 }
