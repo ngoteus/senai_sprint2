@@ -6,5 +6,5 @@ CREATE TABLE Usuario
 	Email VARCHAR(100),
 	Senha VARCHAR (100),
 	Permissao BIT
-
 )
+

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using webapi.filmes.manha.Domains;
@@ -21,6 +22,7 @@ namespace webapi.filmes.manha.Controllers
 
     //Metodo controlador que herda da controller base
     //Onde sera criado os Endpoints(rotas)
+    [Authorize]
 
     public class GeneroController : ControllerBase
     {
@@ -36,6 +38,7 @@ namespace webapi.filmes.manha.Controllers
 
         //EndPoint que aciona o metodo ListarTodos no repositorio e retorna a resposta para o usuario(front-end)
         [HttpGet]
+        
         public IActionResult Get()
         {
             try
@@ -60,6 +63,7 @@ namespace webapi.filmes.manha.Controllers
         /// <returns>status code 201(created)</returns>
 
         [HttpPost]
+        [Authorize(Roles = "True" )]
         public IActionResult Post(GeneroDomain novoGenero)
         {
             try
@@ -79,8 +83,9 @@ namespace webapi.filmes.manha.Controllers
 
 
         }
-        [HttpDelete]
 
+        [HttpDelete]
+        [Authorize(Roles = "True")]
         public IActionResult Delete(int id)
         {
             try
@@ -97,6 +102,7 @@ namespace webapi.filmes.manha.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize (Roles = "True")]
         public IActionResult GetById(int id)
         {
             try
@@ -123,6 +129,7 @@ namespace webapi.filmes.manha.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "True")]
         public IActionResult PutIdBody(GeneroDomain genero)
         {
             try
@@ -156,6 +163,7 @@ namespace webapi.filmes.manha.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "True")]
         public IActionResult PutIdUrl(int id, GeneroDomain genero)
         {
             GeneroDomain generoBuscado = _generoRepository.BuscarPorId(id);

@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using webapi.filmes.manha.Domains;
 using webapi.filmes.manha.Interfaces;
+using System.Reflection;
 
 namespace webapi.filmes.manha.Repositories
 {
@@ -11,7 +12,7 @@ namespace webapi.filmes.manha.Repositories
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-              string emailzinho =  "SELECT Email, Senha, Permissao FROM Usuario WHERE Email = @Email AND Senha = @Senha";
+              string emailzinho =  "SELECT IdUsuario, Email, Senha, Permissao FROM Usuario WHERE Email = @Email AND Senha = @Senha";
 
                 con.Open();
 
