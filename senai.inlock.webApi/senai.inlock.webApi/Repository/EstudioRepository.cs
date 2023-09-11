@@ -14,14 +14,14 @@ namespace senai.inlock.webApi_.Repository
         ///     -Windows : Integrated Security =  true
         ///     -SqlServer : User Id = sa; Pwd = Senha
         /// </summary>
-        private string StringConexao = "Data Source =NOTE04-S14; Initial Catalog =Filmes; User Id = sa; Pwd = Senai@134";
+        private string StringConexao = "Data Source = NOTE04-S14; Initial Catalog = inlock_games; User Id = sa; Pwd = Senai@134";
 
 
         public void Cadastrar(EstudioDomain estudioDomain)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string QueryInsert = "Insert into Estudio(Nome) VALUES (@Nome)";
+                string QueryInsert = "INSERT INTO Estudio(Nome) VALUES (@Nome)";
                 using (SqlCommand cmd = new SqlCommand(QueryInsert, con))
                 {
                     cmd.Parameters.AddWithValue("@Nome", estudioDomain.Nome);

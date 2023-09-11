@@ -2,16 +2,15 @@
 
 namespace senai.inlock.webApi_.Interfaces
 {
-    public class IJogosRepository
+    public interface IJogosRepository
     {
-
         ///tipoRetorno NomeMetodo(tipoParametro nomeParametro)
-        void CadastrarJogo(JogosDomain jogo);
+        void Cadastrar(JogosDomain novoJogo);
 
         ///Listar todos os objetos cadastrados <summary>
         /// Listar todos os objetos cadastrados
         /// </summary>
         /// <returns>Lista com objetos</returns>
-        List<JogosDomain> ListarJogo();
+        List<JogosDomain> ListarTodos();
     }
 }

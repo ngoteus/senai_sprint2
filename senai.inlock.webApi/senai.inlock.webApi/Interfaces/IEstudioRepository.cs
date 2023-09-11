@@ -2,18 +2,15 @@
 
 namespace senai.inlock.webApi_.Interfaces
 {
-    public class IEstudioRepository
+    public interface IEstudioRepository
     {
         ///tipoRetorno NomeMetodo(tipoParametro nomeParametro)
-        void CadastrarEstudio(EstudioDomain novoEstudio);
+        void Cadastrar(EstudioDomain novoEstudio);
 
         ///Listar todos os objetos cadastrados <summary>
         /// Listar todos os objetos cadastrados
         /// </summary>
         /// <returns>Lista com objetos</returns>
         List<EstudioDomain> ListarTodos();
-
-
-        
     }
 }

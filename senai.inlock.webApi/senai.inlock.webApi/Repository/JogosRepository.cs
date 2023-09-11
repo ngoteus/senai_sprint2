@@ -6,14 +6,14 @@ namespace senai.inlock.webApi_.Repository
 {
     public class JogosRepository : IJogosRepository
     {
-        private string StringConexao = "Data Source =NOTE04-S14; Initial Catalog =Filmes; User Id = sa; Pwd = Senai@134";
-
-        
+        private string StringConexao = "Data Source = NOTE04-S14; Initial Catalog = inlock_games; User Id = sa; Pwd = Senai@134";
 
 
 
-    
-    public  List<JogosDomain> ListarTodos()
+
+
+
+        public  List<JogosDomain> ListarTodos()
     {
         List<JogosDomain> ListaJogos = new List<JogosDomain>();
         
@@ -21,7 +21,7 @@ namespace senai.inlock.webApi_.Repository
         using (SqlConnection con =  new SqlConnection(StringConexao))
         {
                 // declara a instrucao a ser utilizada no sql
-                string querySelectAll = "SELECT Jogo.IdJogo, Jogo.IdEstudio, Jogo.Nome, Jogo.Descricao, Jogo.Datalancamento, Jogo.Valor Estudio.Nome, Estudio.IdEstudio FROM Jogo LEFT JOIN Estudio ON Jogo.IdEstudio = Estudio.IdEstudio";
+                string querySelectAll = "SELECT Jogo.IdJogo, Jogo.IdEstudio, Jogo.Nome, Jogo.Descricao, Jogo.Datalancamento, Jogo.Valor, Estudio.Nome, Estudio.IdEstudio FROM Jogo LEFT JOIN Estudio ON Jogo.IdEstudio = Estudio.IdEstudio";
 
                 //abre a conexao com o banco de dados
                 con.Open();
@@ -44,14 +44,14 @@ namespace senai.inlock.webApi_.Repository
 
                             Descricao = rdr[3].ToString(),
 
-                            DataLancamento = Convert.ToDateTime(rdr[4]),
+                            DataLancamento = DateTime.Parse(rdr["DataLancamento"].ToString()),
 
-                            Valor = float.Parse(rdr["Valor"]),
+                            Valor = Convert.ToSingle(rdr["Valor"]),
 
                             Estudio = new EstudioDomain()
                             {
-                                IdEstudio = Convert.ToInt32(rdr[4]),
-                                Nome = rdr[3].ToString()
+                                IdEstudio = Convert.ToInt32(rdr[1]),
+                                Nome = rdr["Nome"].ToString()
                             }
                         };
 
@@ -62,15 +62,17 @@ namespace senai.inlock.webApi_.Repository
         return ListaJogos;
     }
     
-    public void CadastrarJogo(JogosDomain jogo)
+    public void Cadastrar(JogosDomain jogo)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                con.Open();
+                
 
                 string queryInsert = "INSERT INTO Jogo(IdEstudio, Nome, Descricao, DataLancamento, Valor) VALUES(@IdEstudio, @Nome, @Descricao, @DataLancamento, @Valor)";
 
-                using (SqlCommand cmd = SqlCommand(queryInsert, con))
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
                     cmd.Parameters.AddWithValue("@Nome", jogo.Nome);
                     cmd.Parameters.AddWithValue("@IdEstudio", jogo.IdEstudio);

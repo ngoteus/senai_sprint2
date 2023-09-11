@@ -14,4 +14,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.32.3" />
   </ItemGroup>
 
+	<!--Adiciona-->
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
 </Project>

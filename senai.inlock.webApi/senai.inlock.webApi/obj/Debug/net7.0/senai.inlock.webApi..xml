@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>senai.inlock.webApi.</name>
+    </assembly>
+    <members>
+        <member name="M:senai.inlock.webApi_.Controller.JogosController.Get">
+            <summary>
+            EndPoint que lista todos os jogos existentes
+            </summary>
+            <returns>retorna uma lista com todos os jogos e o status code</returns>
+            
+        </member>
+        <member name="M:senai.inlock.webApi_.Interfaces.IEstudioRepository.Cadastrar(senai.inlock.webApi_.Domains.EstudioDomain)">
+            tipoRetorno NomeMetodo(tipoParametro nomeParametro)
+        </member>
+        <member name="M:senai.inlock.webApi_.Interfaces.IEstudioRepository.ListarTodos">
+            Listar todos os objetos cadastrados <summary>
+             Listar todos os objetos cadastrados
+             </summary>
+             <returns>Lista com objetos</returns>
+        </member>
+        <member name="M:senai.inlock.webApi_.Interfaces.IJogosRepository.Cadastrar(senai.inlock.webApi_.Domains.JogosDomain)">
+            tipoRetorno NomeMetodo(tipoParametro nomeParametro)
+        </member>
+        <member name="M:senai.inlock.webApi_.Interfaces.IJogosRepository.ListarTodos">
+            Listar todos os objetos cadastrados <summary>
+             Listar todos os objetos cadastrados
+             </summary>
+             <returns>Lista com objetos</returns>
+        </member>
+        <member name="F:senai.inlock.webApi_.Repository.EstudioRepository.StringConexao">
+            <summary>
+            String de conexao com o banco de dados que recebe os seguintes parametros:
+            Data Source: Nome do Servidor
+            Intital Catalog : Nome Do Banco de dados
+            Autenticacao:
+                -Windows : Integrated Security =  true
+                -SqlServer : User Id = sa; Pwd = Senha
+            </summary>
+        </member>
+    </members>
+</doc>
