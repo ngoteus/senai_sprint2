@@ -8,9 +8,9 @@ namespace webapi.inlock.codeFirst.manha.Context
     {
         //Define as entidades do banco de dados
 
-        public DbSet<Estudio> Estudios { get; set; }
+        public DbSet<Estudio> Estudio { get; set; }
         public DbSet<Jogo> Jogo { get; set; }
-        public DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public DbSet<TiposUsuario> TiposUsuario { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
         //Define as opcoes de construcao do banco(String Conexao)

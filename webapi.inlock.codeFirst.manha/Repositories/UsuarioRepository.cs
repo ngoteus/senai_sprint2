@@ -1,4 +1,5 @@
-﻿using webapi.inlock.codeFirst.manha.Context;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using webapi.inlock.codeFirst.manha.Context;
 using webapi.inlock.codeFirst.manha.Domains;
 using webapi.inlock.codeFirst.manha.Interfaces;
 using webapi.inlock.codeFirst.manha.Utils;
@@ -23,7 +24,26 @@ namespace webapi.inlock.codeFirst.manha.Repositories
         }
         public Usuario BuscarUsuario(string email, string senha)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuarioBuscado = ctx.Usuario.FirstOrDefault(u => u.Email == email)!;
+
+                if (usuarioBuscado != null) 
+                {
+                    bool Confere = Criptografia.CompararHash(senha, usuarioBuscado.Senha!);
+
+                    if (Confere) 
+                    {
+                        return usuarioBuscado;
+                    }
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+                
+            }
         }
 
         public void Cadastrar(Usuario usuario)
@@ -32,9 +52,10 @@ namespace webapi.inlock.codeFirst.manha.Repositories
             {
              usuario.Senha = Criptografia.GerarHash(usuario.Senha);
 
-                        ctx.Add(usuario);
+                ctx.Usuario.Add(usuario);
 
-                        ctx.SaveChanges();
+
+                ctx.SaveChanges();
             }
             catch (Exception)
             {

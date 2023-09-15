@@ -24,7 +24,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoUsuario",
+                name: "TiposUsuario",
                 columns: table => new
                 {
                     IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -32,7 +32,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoUsuario", x => x.IdTipoUsuario);
+                    table.PrimaryKey("PK_TiposUsuario", x => x.IdTipoUsuario);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,16 +63,16 @@ namespace webapi.inlock.codeFirst.manha.Migrations
                 {
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(200)", maxLength: 200, nullable: false),
                     IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
                     table.ForeignKey(
-                        name: "FK_Usuario_TipoUsuario_IdTipoUsuario",
+                        name: "FK_Usuario_TiposUsuario_IdTipoUsuario",
                         column: x => x.IdTipoUsuario,
-                        principalTable: "TipoUsuario",
+                        principalTable: "TiposUsuario",
                         principalColumn: "IdTipoUsuario",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -107,7 +107,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
                 name: "Estudio");
 
             migrationBuilder.DropTable(
-                name: "TipoUsuario");
+                name: "TiposUsuario");
         }
     }
 }

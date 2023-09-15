@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace webapi.inlock.codeFirst.manha.Domains
 {
-    [Table("TipoUsuario")]
-    public class TipoUsuario
+    [Table("TiposUsuario")]
+    public class TiposUsuario
     {
         [Key]
         public Guid IdTipoUsuario { get; set; }

@@ -67,7 +67,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
                     b.ToTable("Jogo");
                 });
 
-            modelBuilder.Entity("webapi.inlock.codeFirst.manha.Domains.TipoUsuario", b =>
+            modelBuilder.Entity("webapi.inlock.codeFirst.manha.Domains.TiposUsuario", b =>
                 {
                     b.Property<Guid>("IdTipoUsuario")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
 
                     b.HasKey("IdTipoUsuario");
 
-                    b.ToTable("TipoUsuario");
+                    b.ToTable("TiposUsuario");
                 });
 
             modelBuilder.Entity("webapi.inlock.codeFirst.manha.Domains.Usuario", b =>
@@ -97,7 +97,7 @@ namespace webapi.inlock.codeFirst.manha.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(200)
                         .HasColumnType("VARCHAR(100)");
 
                     b.HasKey("IdUsuario");
@@ -123,13 +123,13 @@ namespace webapi.inlock.codeFirst.manha.Migrations
 
             modelBuilder.Entity("webapi.inlock.codeFirst.manha.Domains.Usuario", b =>
                 {
-                    b.HasOne("webapi.inlock.codeFirst.manha.Domains.TipoUsuario", "tipoUsuario")
+                    b.HasOne("webapi.inlock.codeFirst.manha.Domains.TiposUsuario", "TiposUsuario")
                         .WithMany()
                         .HasForeignKey("IdTipoUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("tipoUsuario");
+                    b.Navigation("TiposUsuario");
                 });
 
             modelBuilder.Entity("webapi.inlock.codeFirst.manha.Domains.Estudio", b =>
