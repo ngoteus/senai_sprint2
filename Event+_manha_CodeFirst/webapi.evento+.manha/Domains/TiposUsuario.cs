@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace webapi.evento_.manha.Domains
+{
+    [Table(nameof(TiposUsuario))]
+    public class TiposUsuario
+    {
+        [Key]
+        public Guid IdTIpoUsuario { get; set; } = Guid.NewGuid();
+
+        [Column(TypeName = "VARCHAR(100)")]
+        [Required(ErrorMessage ="Titulo do evento obrigatorio")]
+        public string? Titulo { get; set; }
+
+
+    }
+}
