@@ -53,6 +53,7 @@ namespace webapi.evento_.manha.Controllers
             }
         }
 
+        [HttpPut]
         public IActionResult Update(Guid id, TiposEvento tiposEvento)
         {
             try

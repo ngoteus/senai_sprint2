@@ -11,7 +11,7 @@ namespace webapi.evento_.manha.Context
         public DbSet<Evento> Evento { get; set; }
         public DbSet<ComentariosEvento> ComentariosEvento { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
-        public DbSet<PresencasEvento> PresencasEventos { get; set; }
+        public DbSet<PresencasEvento> PresencasEvento { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
