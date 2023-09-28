@@ -7,7 +7,7 @@ namespace webapi.healthclinic.manha.Interfaces
         void Cadastrar(Clinica clinica);
 
         void Deletar(Guid id);
-        List<Clinica> Listar();
+        //List<Clinica> Listar();
         Clinica BuscarPorId(Guid id);
     }
 }

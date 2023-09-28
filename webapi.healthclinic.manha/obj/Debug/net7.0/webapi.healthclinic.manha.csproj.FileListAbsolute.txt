@@ -81,3 +81,4 @@ C:\Users\48527217856\Desktop\senai_sprint2\webapi.healthclinic.manha\obj\Debug\n
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.healthclinic.manha\obj\Debug\net7.0\webapi.healthclinic.manha.pdb
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.healthclinic.manha\obj\Debug\net7.0\webapi.healthclinic.manha.genruntimeconfig.cache
 C:\Users\48527217856\Desktop\senai_sprint2\webapi.healthclinic.manha\obj\Debug\net7.0\ref\webapi.healthclinic.manha.dll
+C:\Users\48527217856\Desktop\senai_sprint2\webapi.healthclinic.manha\bin\Debug\net7.0\BCrypt.Net-Next.dll

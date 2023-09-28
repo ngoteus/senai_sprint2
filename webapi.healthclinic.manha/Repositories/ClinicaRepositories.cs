@@ -1,28 +1,33 @@
-﻿using webapi.healthclinic.manha.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using webapi.healthclinic.manha.Context;
+using webapi.healthclinic.manha.Domains;
 using webapi.healthclinic.manha.Interfaces;
 
 namespace webapi.healthclinic.manha.Repositories
 {
     public class ClinicaRepositories : IClinicaRepository
     {
+        private readonly HealthClinicContext _healthClinicContext;
         public Clinica BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _healthClinicContext.Clinica.FirstOrDefault(e => e.IdClinica == id);
         }
 
         public void Cadastrar(Clinica clinica)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Clinica.Add(clinica);
+
+            _healthClinicContext.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            Clinica clinica = _healthClinicContext.Clinica.Find(id)!;
         }
 
-        public List<Clinica> Listar()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Clinica> Listar()
+        //{
+        //    return _healthClinicContext.Clinica.Include
+        //}
     }
 }

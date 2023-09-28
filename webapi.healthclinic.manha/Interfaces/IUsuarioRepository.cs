@@ -7,8 +7,9 @@ namespace webapi.healthclinic.manha.Interfaces
         void Cadastrar(Usuario usuario);
 
         void Deletar(Guid id);
-        List<Usuario> Listar();
         Usuario BuscarPorId(Guid id);
+
+        Usuario BuscarPorEmailESenha(string Email, string senha);
         
     }
 }

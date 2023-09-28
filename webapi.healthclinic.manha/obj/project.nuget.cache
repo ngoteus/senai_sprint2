@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rSi0J0kVGo3qQDceeZn1JmrEkW44RN4ahlEh9IZZlw/tNoJ91SpIBGzMAV7d3T+9h89lJ9l1cPYL5XNiv2i66g==",
+  "dgSpecHash": "8tdNFQFpgmTJrj3vHeLDtVsPlvXjkxdRzl00nN6QNCzA53BFfeRjcoqqYiDgRIs0ui/yjWfGshDn4NEIswP0Hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\48527217856\\Desktop\\senai_sprint2\\webapi.healthclinic.manha\\webapi.healthclinic.manha.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\48527217856\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\48527217856\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\48527217856\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\48527217856\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\48527217856\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
     "C:\\Users\\48527217856\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.11\\microsoft.aspnetcore.jsonpatch.7.0.11.nupkg.sha512",
