@@ -10,6 +10,11 @@ namespace webapi.healthclinic.manha.Domains
 
         public Guid IdComentario { get; set; } = Guid.NewGuid();
 
+        [Column(TypeName = "VARCHAR(30)")]
+        [Required(ErrorMessage = "Descricao obrigatoria!")]
+        public string? Descricao { get; set; }
+
+
         [Required(ErrorMessage = "Paciente obrigatório!")]
         public Guid IdPaciente { get; set; }
 
@@ -27,9 +32,7 @@ namespace webapi.healthclinic.manha.Domains
         [Required(ErrorMessage = "Titulo do comentario obrigatorio!")]
         public string? TiutloComentario { get; set; }
 
-        [Column(TypeName = "VARCHAR(30)")]
-        [Required(ErrorMessage = "Descricao obrigatoria!")]
-        public string? Descricao { get; set; }
+
 
     }
 }

@@ -42,6 +42,24 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
-        
+        [HttpDelete("{id}")]
+            
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _tiposUsuarioRepository.Deletar(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id) 
+        {
+            return Ok(_tiposUsuarioRepository.BuscarPorId(id));
+        }
     }
 }

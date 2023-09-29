@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webapi.healthclinic.manha.Context;
 
@@ -11,9 +12,11 @@ using webapi.healthclinic.manha.Context;
 namespace webapi.healthclinic.manha.Migrations
 {
     [DbContext(typeof(HealthClinicContext))]
-    partial class HealthClinicContextModelSnapshot : ModelSnapshot
+    [Migration("20230929112741_BD3")]
+    partial class BD3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

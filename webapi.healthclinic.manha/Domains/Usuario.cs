@@ -19,7 +19,7 @@ namespace webapi.healthclinic.manha.Domains
         [Required(ErrorMessage = "Email obrigatorio!")]
         public string? Email { get; set; }
 
-        [Column(TypeName = "VARCHAR(30)")]
+        [Column(TypeName = "VARCHAR(60)")]
         [Required(ErrorMessage = "Senha obrigatoria!")]
         public string? Senha { get; set; }
          

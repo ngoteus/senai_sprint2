@@ -27,9 +27,7 @@ namespace webapi.healthclinic.manha.Repositories
 
         public void Deletar(Guid id)
         {
-            TiposUsuario tiposUsuario = _healthClinicContext.TiposUsuarios.Find(id)!;
-
-            _healthClinicContext.SaveChanges();
+            _healthClinicContext.TiposUsuarios.Where(e => e.IdTipoUsuario == id).ExecuteDelete();
         }
 
         public List<TiposUsuario> Listar()

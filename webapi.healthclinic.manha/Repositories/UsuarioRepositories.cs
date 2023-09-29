@@ -53,12 +53,12 @@ namespace webapi.healthclinic.manha.Repositories
 
         public Usuario BuscarPorId(Guid id)
         {
-            return _healthClinicContext.Usuario.FirstOrDefault(e => e.IdTipoUsuario == id);
+            return _healthClinicContext.Usuario.FirstOrDefault(e => e.IdUsuario == id)!;
         }
 
         public void Cadastrar(Usuario usuario)
         {
-            usuario.Senha = Criptografia.GerarHash(usuario.Senha!);
+            
             _healthClinicContext.Usuario.Add(usuario);
             _healthClinicContext.SaveChanges();
 
@@ -66,9 +66,7 @@ namespace webapi.healthclinic.manha.Repositories
 
         public void Deletar(Guid id)
         {
-            Usuario usuario = _healthClinicContext.Usuario.Find(id)!;
-
-            _healthClinicContext.SaveChanges();
+            _healthClinicContext.Usuario.Where(e => e.IdUsuario == id).ExecuteDelete();
         }
 
         
