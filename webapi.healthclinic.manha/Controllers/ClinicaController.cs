@@ -17,6 +17,12 @@ namespace webapi.healthclinic.manha.Controllers
         {
             _clinicaRepository = new ClinicaRepositories();
         }
+
+        /// <summary>
+        /// Cadastra uma nova clínica.
+        /// </summary>
+        /// <param name="novaClinica">Dados da nova clínica a ser cadastrada.</param>
+        /// <returns>Retorna um código de status indicando o resultado da operação.</returns>
         [HttpPost]
         public IActionResult Post(Clinica clinica) 
         {
@@ -31,9 +37,14 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Deleta a clinica pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleta a clinica fornecida pelo id</returns>
         [HttpDelete("{id}")]
 
-        public IActionResult Delete(Guid id) 
+        public IActionResult Delete(Guid id)
         {
             try
             {
@@ -45,6 +56,11 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Busca a clinica cadastrada pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna a clinica cadastrada pelo id</returns>
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {

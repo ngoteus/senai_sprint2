@@ -17,6 +17,11 @@ namespace webapi.healthclinic.manha.Controllers
         {
             _usuarioRepository = new UsuarioRepositories();
         }
+        /// <summary>
+        /// Endpoint POST para cadastrar um novo usuário.
+        /// </summary>
+        /// <param name="usuario">Objeto usuário a ser cadastrado.</param>
+        /// <returns>Código de status 201 em caso de sucesso ou 400 com a mensagem de erro.</returns>
         [HttpPost]
         public IActionResult Post(Usuario usuario) 
         {
@@ -34,6 +39,11 @@ namespace webapi.healthclinic.manha.Controllers
                
             }
         }
+        /// <summary>
+        /// Busca o usuario pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>retorna o usuario buscado pelo id</returns>
         [HttpGet("{id}")]
 
         public IActionResult GetById(Guid id)
@@ -49,6 +59,11 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Deleta o usuario pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>retorna o usuario deletado pelo id</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

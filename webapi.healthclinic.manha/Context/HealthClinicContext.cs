@@ -8,7 +8,7 @@ namespace webapi.healthclinic.manha.Context
         public DbSet<TiposUsuario> TiposUsuarios { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Clinica> Clinica { get; set; }
-        public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Medico> Medico { get; set; }
         public DbSet<Comentario> Comentario { get; set; }
         public DbSet<Consulta> Consulta { get; set; }
         public DbSet<Paciente> Paciente { get; set; }

@@ -17,6 +17,11 @@ namespace webapi.healthclinic.manha.Controllers
         {
             _tiposUsuarioRepository = new TiposUsuarioRepositories();
         }
+        /// <summary>
+        /// Cadastra um novo tipo de usuário.
+        /// </summary>
+        /// <param name="novoTipoUsuario">Objeto contendo informações do tipo de usuário a ser cadastrado.</param>
+        /// <returns>StatusCode 201 se bem-sucedido.</returns>
         [HttpPost]
         public IActionResult Post(TiposUsuario tiposUsuario) 
         {
@@ -30,6 +35,10 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Lista todos os tipos de usuários cadastrados.
+        /// </summary>
+        /// <returns>Uma lista de tipos de usuários.</returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -42,6 +51,11 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Deleta o tipo de usuario pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna o tipo de usuario deletado</returns>
         [HttpDelete("{id}")]
             
         public IActionResult Delete(Guid id)
@@ -56,6 +70,11 @@ namespace webapi.healthclinic.manha.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Obtém um tipo de usuário específico baseado em seu ID.
+        /// </summary>
+        /// <param name="id">ID do tipo de usuário a ser obtido.</param>
+        /// <returns>Detalhes do tipo de usuário específico.</returns>
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id) 
         {

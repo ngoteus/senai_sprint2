@@ -21,6 +21,11 @@ namespace webapi.healthclinic.manha.Controllers
         {
             _usuarioRepository = new UsuarioRepositories();
         }
+        /// <summary>
+        /// Realiza o login do usuário utilizando seu email e senha, retornando um token JWT caso bem-sucedido.
+        /// </summary>
+        /// <param name="usuario">Objeto que contém as informações de email e senha do usuário.</param>
+        /// <returns>Token JWT para autenticação caso bem-sucedido, ou um erro caso contrário.</returns>
         [HttpPost]
         public IActionResult Post(LoginViewModel usuario)
         {

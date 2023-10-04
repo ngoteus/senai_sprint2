@@ -9,5 +9,6 @@ namespace webapi.healthclinic.manha.Interfaces
         void Deletar(Guid id);
         List<Consulta> Listar();
         Consulta BuscarPorId(Guid id);
+   
     }
 }
