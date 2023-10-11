@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let frutas = ["banana", "maça", "morango"];
+
+        console.log(frutas);
+        console.log(`Quantidade de frutas: ${frutas.length}`);
+
+        frutas.push('uva');
+        frutas.push('mamão');
+        frutas.push('amora');
+        
+        console.log(`Quantidade de frutas: ${frutas.length}`);
+
+        frutas.sort();
+
+        console.log();
+        console.log();
+       
+        // console.log([0]); //amora
+        // console.log([2]); //mamão
+        // console.log([5]); //uva
+        // console.log([6]); //undefined
+
+        // for (let index = 0; index < frutas.length; index++) {
+        //     console.log(`Frutas ${index + 1} ${frutas[index]}`);
+            
+        // }
+
+        // frutas.forEach(function (fruta, i){
+        //     console.log(`Frutas${i + 1} ${fruta}`);
+        // });
+
+
+        let pratileira = ["Cerveja", "Coca-Cola", "Água", "Gatorade", "Corote","H2O"];
+
+        let bebida = pratileira[7];
+        
+        switch (bebida) {
+            case "Cerveja":
+                console.log("Aiin cervejinha");
+                break;
+            case "Coca-Cola":
+                console.log("Aiin Coquinha");
+                break;
+            case "Água":
+                console.log("Aiin Aguinha");
+                break;
+            case "Gatorade":
+                console.log("Aiin gatoredezinho");
+                break;
+            case "Corote":
+                console.log("Aiin corotinho");
+                break;
+            case "H2O":
+                console.log("Aiin h2zinho");
+                break;
+        
+            default:
+                break;
+        }
+    </script>
+</body>
+</html>

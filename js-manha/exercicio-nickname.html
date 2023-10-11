@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Criar um formulário para receber o nome do usuário -->
+    <!-- e substituir por um nickname -->
+    <!-- ao clicar no botão o nickname deve ser exibido na tela -->
+
+    <form onsubmit="exibirNick()">
+        <label for="nome">Informe seu nome</label>
+        <input type="text" id="nome" placeholder="nome">
+
+        <label for="nickname">Informe seu nickname</label>
+        <input type="text" id="nickname" placeholder="nickname">
+
+        <button type="submit">Exibir</button>
+        <br>
+        <span id="apelido">Nickname:</span>
+    </form>
+
+    <script>
+        function exibirNick(){
+        event.preventDefault();
+        
+        let nome = document.getElementById("nome").value;
+        let nickname = document.getElementById("nickname").value;
+
+        document.getElementById("apelido").innerHTML = nome.replace(nome, `Seu nickname é ${nickname}! Seja bem vindo ${nome} `)
+        };
+    </script>
+</body>
+
+</html>
