@@ -77,9 +77,10 @@ function retornaSituacao(imc) {
 function listarPessoas(){
     console.log(arrPessoas)
 
+    let template = "";
     let tabela = document.getElementById("corpo-tabela")
     arrPessoas.forEach(p =>{
-     template = `
+     template += `
     <tr>
     <th>${p.nome}</th>
     <th>${p.altura}</th>
