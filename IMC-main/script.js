@@ -1,5 +1,8 @@
-function calcular(){
-    event.preventDefault();
+const arrPessoas = [];
+
+
+function calcular(e){
+e.preventDefault();
 
     const nome = document.getElementById('nome').value.trim();
     const altura = parseFloat(document.getElementById('altura').value)
@@ -9,13 +12,32 @@ function calcular(){
         alert("É necessário preencher os números corretamente!")
         return;
     }
+    //calcular o imc
     const imc = calcularImc(altura, peso);
-    const situacao = retornaSituacao(imc)
-    console.log(nome);
-    console.log(altura);
-    console.log(peso);
-    console.log(imc);
-    console.log(situacao);
+    // gera o texto da situacao
+    const txtSituacao = retornaSituacao(imc)
+
+    //gera o objeto com os dados da pessoa
+    const pessoa = {
+        nome, altura, peso, imc, situacao: txtSituacao
+    };
+    //adiciona a pessoa na losta
+    arrPessoas.push(pessoa);
+    
+    //lista as pessoas
+    listarPessoas();
+
+
+
+
+    console.log(pessoa);
+
+
+    // console.log(nome);
+    // console.log(altura);
+    // console.log(peso);
+    // console.log(imc);
+    // console.log(situacao);
 }
 
 function calcularImc(altura, peso){
@@ -29,19 +51,19 @@ function calcularImc(altura, peso){
 
 function retornaSituacao(imc) {
     if (imc < 18.5) {
-        console.log("Magreza Severa")
+        return "Magreza severa"
     }
     else if ( imc <= 24.99) {
-        console.log("Peso normal")
+        return "Peso normal"
     }
     else if (imc <= 29.99) {
-        console.log("Acima do peso")
+        return "Acima do peso"
     }
     else if (imc <= 34.99) {
-        console.log("Obseidade I")
+        return "Obesidade I"
     }
     else if(imc <= 39.99){
-        console.log("Obesidade II")
+        return "Obesidade II"
     }
     else {
         return "Cuidado!"
@@ -49,8 +71,44 @@ function retornaSituacao(imc) {
 
 
 
-    return 'situação'
+    // return 'situação'
 }
+
+function listarPessoas(){
+    console.log(arrPessoas)
+
+    let tabela = document.getElementById("corpo-tabela")
+    arrPessoas.forEach(p =>{
+     template = `
+    <tr>
+    <th>${p.nome}</th>
+    <th>${p.altura}</th>
+    <th>${p.peso}</th>
+    <th>${p.imc}</th>
+    <th>${p.situacao}</th>
+    </tr>   
+    `;
+    })
+    tabela.innerHTML = template;
+
+
+    //MANEIRA DIFERENTE
+    // let template = "";
+
+    // arrPessoas.forEach((p) => {//preenche ou acumula os valorez na string
+    //     template += `
+    //     <tr>
+    //     <th>${p.nome}</th>
+    //     <th>${p.altura}</th>
+    //     <th>${p.peso}</th>
+    //     <th>${p.imc}</th>
+    //     <th>${p.situacao}</th>
+    //     </tr> `;
+    // });
+
+    // document.getElementById('corpo-tabela').innerHTML = template;
+}
+
 
 
 
