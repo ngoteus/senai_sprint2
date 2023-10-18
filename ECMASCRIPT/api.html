@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const url = "https://viacep.com.br/ws/09330170/json/"
+       fetch(url)
+            .then((resp) => {
+           
+                return resp.json();
+            })
+            .then((dados) => {
+                console.log(dados);
+                console.log();
+                console.log(`
+                Endereco: ${dados.logradouro}
+                Codade: ${dados.localidade}
+                Estado: ${dados.uf}
+                `);
+            })
+            .catch((e) =>{
+                console.log("Deu ruim!");
+            })
+
+            
+    </script>
+</body>
+</html>
