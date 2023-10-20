@@ -1,0 +1,14 @@
+{
+  "tiposEvento": [
+    {
+      "id": 1,
+      "Titulo": "Andre Chefao"
+    },
+    {
+      "tipoEvento": "Sql banco",
+      "instituicao": "senai134",
+      "Data": "20-11-2023",
+      "id": 2
+    }
+  ]
+}
