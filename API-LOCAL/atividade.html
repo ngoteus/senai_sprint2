@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastre sua veículo</h1>
+
+    <form onsubmit="cadastrar(event)">
+    <label for="veiculo">Informe o nome do veículo</label>
+    <input type="text" id="veiculo" placeholder="nome do veículo">
+
+
+    <button>Cadastrar</button>
+    <br>
+    </form>
+    <div id="lista-veiculos"></div>
+    <script>
+       const arrVeiculo = [];//array global
+
+        function cadastrar(e){
+        event.preventDefault();//captura o submit do formulario
+
+        
+        const veiculo = document.getElementById("veiculo").value.trim();
+        veiculo.trim();
+        veiculo.toLowerCase();
+        
+        arrVeiculo.push(veiculo);//guarda no array
+        arrVeiculo.sort();//ordena o array
+       
+
+        let template = "<ul>";
+       arrVeiculo.forEach((veiculo) => {
+        template += `<li>${veiculo}</li>`;
+       });
+
+       template += "</ul>";
+
+       document.getElementById("lista-veiculos").innerHTML =  template;
+        };
+    </script>
+</body>
+
+<script></script>
+</html>
