@@ -7,6 +7,17 @@
 </head>
 <body>
     <form onsubmit="cadastrar(event)">
+
+        <label for="nome">Nome</label>
+        <input type="text" placeholder="Digite seu nome" id="nome">
+    
+        <br><br>\
+
+        <label for="email">Email</label>
+    <input type="text" placeholder="Digite seu Email" id="email">
+
+    <br><br>\
+
     <label for="cep">CEP</label>
     <input type="number" onblur="buscarEndereco(this.value)" placeholder="Digite seu cep" id="cep">
     <span id="not-found"></span>
@@ -15,6 +26,11 @@
 
     <label for="endereco">Endereco</label>
     <input type="text" placeholder="Digite seu endereco" id="endereco">
+
+    <br><br>\
+
+    <label for="numero">numero</label>
+    <input type="number" placeholder="Digite seu numero" id="numero">
 
     <br><br>\
 
