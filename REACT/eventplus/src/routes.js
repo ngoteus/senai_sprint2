@@ -1,16 +1,23 @@
 import React from 'react';
-import { BrowserRouter, Routes } from 'react-router-dom';
-
-import HomePage from "./pages/HomePage/HomePage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import EventosPage from './pages/EventosPage/EventosPage';
 import LoginPage from "./pages/LoginPage/LoginPage"
+import HomePage from './pages/HomePage/HomePage';
+import TipoEventos from './pages/TipoEventos/TipoEventos'
+import TestePage from './pages/Teste/TestePage';
+
+
 
 const Rotas = () => {
     return (
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route Component={<HomePage/>} path={"/"} exact/>
-                    <Route Component={<LoginPage/>} path={"/login"} />
+                    <Route element={<HomePage/>} path={"/"} exact/>
+                    <Route element={<LoginPage/>} path={"/login"} />
+                    <Route element={<TipoEventos/>} path={"/tipo-evento"} />
+                    <Route element={<EventosPage/>} path={"/evento"} />
+                    <Route element={<TestePage/>} path={"/teste"} />
                 </Routes>
             </BrowserRouter>
         </div>
