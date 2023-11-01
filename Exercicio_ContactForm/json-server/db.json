@@ -1,0 +1,47 @@
+{
+  "contatos": [
+    {
+      "id": 1,
+      "nome": {
+        "primeiroNome": "Pedro",
+        "sobrenome": "Henrique"
+      },
+      "email": "pedro@email.com",
+      "telefone": {
+        "codigoPais": "+55",
+        "ddd": "11",
+        "numero": "99999-9999"
+      },
+      "endereco": {
+        "cep": "99999-999",
+        "rua": "Rua Ciclano",
+        "numero": "24",
+        "bairro": "Jardim Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP"
+      },
+      "anotacoes": "O joão é foda"
+    },
+    {
+      "nome": "Roberto",
+      "sobrenome": "Carlos",
+      "email": "teste@gmail.com",
+      "telefone": {
+        "pais": "55",
+        "ddd": "11",
+        "numero": "99999999999"
+      },
+      "endereco": {
+        "cep": "09951340",
+        "rua": "Rua Maria Florinda",
+        "numero": "42",
+        "complemento": "(Jd B Vista)",
+        "bairro": "Piraporinha",
+        "cidade": "Diadema",
+        "estado": "SP"
+      },
+      "anotacoes": "Filé!",
+      "id": 2
+    }
+  ]
+}
