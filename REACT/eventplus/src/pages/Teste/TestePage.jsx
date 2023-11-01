@@ -6,15 +6,23 @@ import Button from "../../components/Button/Button";
 const TestePage = () => {
     const [n1, setN1] = useState(0);
     const [n2, setN2] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    function handleCalcular(e) {
+        e.preventDefault();
+        setTotal(parseFloat(n1) +  parseFloat(n2));
+    }
 
     return (
         <div>
 
-            <Header />
+            {/* <Header /> */}
             <h1>Pagina de poc´s</h1>
             <h2>Calculator</h2>
 
-            <form action="">
+            <form onSubmit={handleCalcular}
+            
+            >
                 <Input 
                 type="number"
                 placeholder="Primeiro numero"
@@ -37,9 +45,17 @@ const TestePage = () => {
 
                 <Button 
                     textButton="Calcular"
-
+                    type="submit"
                 />
+                <span>
+                    Resultado: 
+                    <strong >
+                        {total}
+                    </strong>
+                </span>
             </form>
+            {/* <p>VALOR DO N1: {n1}</p>
+            <p>VALOR DO N1: {n2}</p> */}
         </div>
     )
 }

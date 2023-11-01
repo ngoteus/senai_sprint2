@@ -1,21 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import './Header.css'
+
+import Container from "../Container/Container";
 
 const Header = () => {
     return(
-        <header>
-            <nav>
-                
-                <Link to="/">Home</Link>
-                <br />
-                <Link to="/tipo-evento">TipoEventos</Link>
-                <br />
-                <Link to="/evento">Eventos</Link>
-                <br />
-                <Link to="/login">Login</Link>
-                <br />
-                <Link to="/teste">Teste</Link>
-            </nav>
+        <header className="headerpage">
+            <Container>
+                <div>
+                    </div>    
+            </Container>
+            
         </header>
     );
 };
