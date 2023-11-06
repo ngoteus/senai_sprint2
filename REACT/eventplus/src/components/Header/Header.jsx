@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+
 import './Header.css'
 
 import Container from "../Container/Container";
 import Nav from "../Nav/Nav";
-import PerfilUsuario from '../PerfilUsuario/PerfilUsuario'
+// import PerfilUsuario from '../PerfilUsuario/PerfilUsuario'
 import menubar from '../../assets/images/menubar.png'
-import logMobile from '../../assets/images/logo-white.svg'
-import logDesktop from '../../assets/images/logo-pink.svg'
+
 
 const Header = () => {
+
+    const [exibeNavBar, setExibeNavBar] = useState(false);
     return(
         <header className="headerpage">
-            <Container>
-                <div className="header-flex">
-                    <img src={menubar} alt="Imagem menu de barras. Serve para exibir ou esconder o menu no smartphone" />
+            <Container> 
+                 <div className="header-flex">
+                    <img src={menubar} alt="Imagem menu de barras. Serve para exibir ou esconder o menu no smartphone" 
+                    onClick={() => {setExibeNavBar(true)}}
+                    className="headerpage__menubar"
+                    />
 
-                    <Nav />
-                    <PerfilUsuario />
-                </div>    
+                    <Nav exibeNavBar={exibeNavBar} setExibeNavBar={setExibeNavBar} /> 
+                    {/* <PerfilUsuario /> */}
+                </div>   
             </Container>
             
         </header>

@@ -1,10 +1,6 @@
 import Rotas from './routes';
 import './App.css';
 
-const App = () => <Rotas />
-
-
-  
-
+const App = () => <Rotas/>
 
 export default App;

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import EventosPage from './pages/EventosPage/EventosPage';
 import LoginPage from "./pages/LoginPage/LoginPage"
 import HomePage from './pages/HomePage/HomePage';
@@ -11,7 +13,6 @@ import Header from './components/Header/Header';
 
 const Rotas = () => {
     return (
-        <div>
             <BrowserRouter>
                <Header/>
                 <Routes>
@@ -22,7 +23,7 @@ const Rotas = () => {
                     <Route element={<TestePage/>} path={"/teste"} />
                 </Routes>
             </BrowserRouter>
-        </div>
+
     );
 };
 
