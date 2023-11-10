@@ -8,17 +8,18 @@ import Title from "../../components/Titulo/Title";
 import NextEvent from "../../components/NextEvent/NextEvent";
 import Container from "../../components/Container/Container";
 import axios from "axios";
+import api from '../../Services/Services'
+import { nextEventResource } from "../../Services/Services";
 
 const HomePage = () => {
 
     const [nextEvents, setNextEvents] = useState([]);
-    const urlLocal = 'https://localhost:7118/api'
     useEffect(() => {
       async function getNextEvents(){
         try {
-            const promise = await axios.get(`${urlLocal}/Evento/ListarProximos`);
+            const promise = await api.get(nextEventResource);
             const dados =  await promise.data;
-
+            console.log(dados);
             setNextEvents(dados);
         } catch (error) {
             alert("Deu ruim na api!")
@@ -46,7 +47,7 @@ const HomePage = () => {
                         eventDate={e.dataEvento}
                         idEvent={e.idEvento}/> 
                             )
-                    })};
+                    })}
 
                         
                         
