@@ -6,19 +6,22 @@ export const Input = ( {
     id,
     value,
     required,
-    additionalClass,
     name,
     placeholder,
-    manipulationFunction
+    manipulationFunction,
+    additionalClass = '',
 } ) => {
+    function teste(valor) {
+        console.log("ola")
+    }
     return(
         <input 
         type={type} 
         id={id} 
+        name={name}
         value={value} 
         required={required ? "required" : ""} 
         className={`input-component ${additionalClass}`}
-        name={name}
         placeholder={placeholder}
         onChange={manipulationFunction}
         autoComplete="off"
@@ -37,7 +40,7 @@ export const Button = ( props ) => {
             id={props.id}
             name={props.name}
             type={props.type}
-            className={props.additionalClass}
+            className={`button-component ${props.additionalClass}`}
             onClick={props.manipulationFunction}
             >
             {props.textButton}
@@ -45,15 +48,15 @@ export const Button = ( props ) => {
     );
 }
 
-export const Select = ({
-    required,
-    id,
-    name,
-    options,
-    manipulationFunction,
-    additionalClass = "",
-    defaultValue
-}) => {
+        export const Select = ({
+            required,
+            id,
+            name,
+            options,
+            manipulationFunction,
+            additionalClass = "",
+            defaultValue
+        }) => {
     return(
         <select 
         name={name}
