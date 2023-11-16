@@ -4,6 +4,8 @@ import './TableTp.css'
 import editPen from '../../../assets/images/edit-pen.svg'
 import trashDelete from '../../../assets/images/trash-delete.svg'
 
+
+
 const TableTp = ({dados, fnDelete = null, fnUpdate = null}) => {
     return (
         <table className='table-data'>
@@ -22,15 +24,22 @@ const TableTp = ({dados, fnDelete = null, fnUpdate = null}) => {
           return (
              <tr className="table-data__head-row">
               <td className="table-data__data table-data__data--big">
-                Texto do tipo
+                {tp.titulo}
               </td>
 
               <td className="table-data__data table-data__data--little">
                 <img className="table-data__icon" src={editPen} alt="" />
               </td>
 
-              <td className="table-data__data table-data__data--little">
-                <img className="table-data__icon" src={trashDelete} alt="" />
+              <td className="table-data__data table-data__data--little" 
+              >
+                <img 
+                className="table-data__icon" 
+                src={trashDelete} 
+                alt="" 
+                onClick={(e) => {
+                  fnDelete(tp.idTipoEvento)
+                  }} />
               </td>
             </tr>
           )

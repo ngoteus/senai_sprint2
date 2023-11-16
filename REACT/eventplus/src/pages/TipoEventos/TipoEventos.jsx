@@ -10,6 +10,7 @@ import api, { eventsTypeResource } from '../../Services/Services'
 import TableTp from "./TableTP/TableTp";
 
 
+
 const TiposEvento = () => {
     const [frmEdit, setFrmEdit] = useState(false);
     const [titulo, setTitulo] = useState();
@@ -19,13 +20,15 @@ const TiposEvento = () => {
         async function loadEventsType() {
             try {
               const retorno = await api.get(eventsTypeResource);
-            setTipoEventos(retorno.data)  
+            setTipoEventos(retorno.data);
+            console.log(retorno.data);
             } catch (error) {
                 console.log("Erro na api")
                 console.log(error)
             }
             
         }
+        loadEventsType()
     }, [])
 
     async function handleSubmit(e) {
@@ -43,6 +46,13 @@ const TiposEvento = () => {
         alert("deu ruim no submit")
        }
     }
+    function atualizaEventosTela(idEvento) {
+        const xpto = tipoEventos.filter((t) =>{
+            return t.idEvento !== idEvento;
+        });
+
+        setTipoEventos(xpto);
+    }
     function handleUpdate(){
         alert('Bora Atualizar')
     }
@@ -53,8 +63,23 @@ const TiposEvento = () => {
     function showUpdateForm(){
         alert("vamops mostrar o formulario de edicao")
     }
-    function handleDelete(idElement) {
-        alert(`Vamos apagar o evento de id: ${idElement}`)
+   async function handleDelete(idElement) {
+        alert(`Vamos apagar o evento de id: ${idElement}`);
+
+        if (! window.confirm("Confirma a exclusao?")) {
+            return;
+        }
+
+        try {
+            const promise = await api.delete(`${eventsTypeResource}/${idElement}`);
+
+            if (promise.status === 204) {
+                alert("Cadastro apagado com sucesso!");
+                atualizaEventosTela(idElement)
+            }
+        } catch (error) {
+            alert("Problemas ao apagar o elemento")
+        }
     }
     
     return(
@@ -111,9 +136,10 @@ const TiposEvento = () => {
                     <Container>
                         <Title titleText={"Lista Tipo de Eventos"} color="white"/>
                         <TableTp 
+                            dados={tipoEventos}
                             fnUpdate={showUpdateForm}
                             fnDelete={handleDelete}
-                            dados={tipoEventos}
+                            
 
                         />
                     </Container>
