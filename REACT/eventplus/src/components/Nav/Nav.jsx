@@ -31,14 +31,14 @@ const Nav = ({exibeNavBar, setExibeNavBar}) => {
             </Link>
 
             <div className='navbar__items-box'>
-                <Link to="/">Home</Link>
-                <Link to="/tipo-evento">Tipos de Eventos</Link>
-                <Link to="/evento">Eventos</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/teste">testes</Link>
+                <Link to="/" className='navbar__item'>Home</Link>
+                <Link to="/tipo-evento"  className='navbar__item'>Tipos de Eventos</Link>
+                <Link to="/evento"  className='navbar__item'>Eventos</Link>
+                <Link to="/login"  className='navbar__item'>Login</Link>
+                <Link to="/teste"  className='navbar__item'>testes</Link>
             </div>
             
-            <button onClick={() => {setExibeNavBar(true)}}>mostrar menu</button>
+            
         </nav>
     );
 };

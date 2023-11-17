@@ -1,11 +1,13 @@
 import React from "react";
 import "./LoginPage.css"
 
+import Title from "../../components/Titulo/Title";
+
 
 const LoginPage = () => {
     return(
         <div>
-            <h1>Pagina de login</h1>
+            <Title titleText= "Login Page" />
         </div>
     );
 };

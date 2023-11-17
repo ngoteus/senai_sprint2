@@ -11,6 +11,7 @@ import axios from "axios";
 import api from '../../Services/Services'
 import { nextEventResource } from "../../Services/Services";
 
+
 const HomePage = () => {
 
     const [nextEvents, setNextEvents] = useState([]);
