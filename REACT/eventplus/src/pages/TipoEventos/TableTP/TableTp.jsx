@@ -28,9 +28,12 @@ const TableTp = ({dados, fnDelete = null, fnUpdate = null}) => {
               </td>
 
               <td className="table-data__data table-data__data--little">
-                <img className="table-data__icon" 
-                src={editPen} alt=""
-                onClick={() => {
+                <img 
+                idtipoevento= {tp.idTipoEvento}
+                className="table-data__icon" 
+                src={editPen}
+                 alt=""
+                onClick={(e) => {
                   fnUpdate(tp.idTipoEvento)
                 }} />
               </td>
@@ -38,6 +41,7 @@ const TableTp = ({dados, fnDelete = null, fnUpdate = null}) => {
               <td className="table-data__data table-data__data--little" 
               >
                 <img 
+                idtipoevento= {tp.idTipoEvento}
                 className="table-data__icon" 
                 src={trashDelete} 
                 alt="" 
