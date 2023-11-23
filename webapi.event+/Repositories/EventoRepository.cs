@@ -90,6 +90,7 @@ namespace webapi.event_.Repositories
             try
             {
                 return _context.Evento.ToList();
+
             }
             catch (Exception)
             {
