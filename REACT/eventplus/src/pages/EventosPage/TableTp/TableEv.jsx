@@ -1,6 +1,7 @@
 import React from 'react';
 import './TableEv.css'
 
+import {dateFormatDbToView} from '../../../utils/StringFunctions'
 import editPen from '../../../assets/images/edit-pen.svg'
 import trashDelete from '../../../assets/images/trash-delete.svg'
 
@@ -14,6 +15,7 @@ const TableEv = ({dados, fnDelete = null, fnUpdate = null}) => {
                     <th className="table-data__head-title table-data__head-title--big">Título</th>
                     <th className="table-data__head-title table-data__head-title--big">Descrição</th>
                     <th className="table-data__head-title table-data__head-title--big">Data</th>
+                    <th className="table-data__head-title table-data__head-title--big">Tipo de evento</th>
                     
                     <th className="table-data__head-title table-data__head-title--little">Editar</th>
 
@@ -33,7 +35,10 @@ const TableEv = ({dados, fnDelete = null, fnUpdate = null}) => {
                 {ev.descricao}
               </td>
               <td className="table-data__data table-data__data--big">
-                {ev.dataEvento}
+                {dateFormatDbToView(ev.dataEvento)}
+              </td>
+              <td className="table-data__data table-data__data--big">
+                {ev.tiposEvento.titulo}
               </td>
 
               <td className="table-data__data table-data__data--little">

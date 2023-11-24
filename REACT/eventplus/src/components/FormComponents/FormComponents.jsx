@@ -40,7 +40,7 @@ export const Button = ( props ) => {
             id={props.id}
             name={props.name}
             type={props.type}
-            className={`button-component ${props.additionalClass}`}
+            className={`button-component ${props.addclass}`}
             onClick={props.manipulationFunction}
             >
             {props.textButton}
@@ -54,17 +54,17 @@ export const Button = ( props ) => {
             name,
             options,
             manipulationFunction,
-            additionalClass = "",
-            defaultValue
+            addclass = "",
+            value
         }) => {
     return(
         <select 
         name={name}
          id={id}
          required={required}
-         className={`input-component ${additionalClass}`}
+         className={`input-component ${addclass}`}
          onChange={manipulationFunction}
-         value={defaultValue}
+         value={value}
          >
             <option value="">Tipo Evento</option>
             {options.map((o) => {
