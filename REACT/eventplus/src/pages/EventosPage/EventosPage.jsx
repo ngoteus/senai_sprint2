@@ -98,13 +98,7 @@ const EventosPage = () => {
         idInstituicao: IdInstituicao
       });
     } catch (error) {
-        console.log({
-            dataEvento: dataEvento,
-            nomeEvento: nomeEvento,
-            descricao: descricao,
-            IdTipoEvento: IdTipoEvento,
-            idInstituicao: IdInstituicao
-        })
+        console.error(error)
     }
   }
 
