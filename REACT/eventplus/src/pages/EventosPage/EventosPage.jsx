@@ -20,13 +20,13 @@ const EventosPage = () => {
   const IdInstituicao = "b697bd61-3c72-42d9-bd31-ef10399afd1f";
   const [frmEdit, setFrmEdit] = useState(false);
   const [eventos, setEventos] = useState([]);
-  const [nomeEvento, setNomeEvento] = useState('');
-  const [dataEvento, setDataEvento] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [idEvento, setIdEvento] = useState('');
+  const [nomeEvento, setNomeEvento] = useState("");
+  const [dataEvento, setDataEvento] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [idEvento, setIdEvento] = useState("");
   const [tipoEventos, setTipoEventos] = useState([]);
-  const [IdTipoEvento, setIdTipoEvento] = useState('');
-  const [frmEditData, setFrmEditData]= useState({})
+  const [IdTipoEvento, setIdTipoEvento] = useState("");
+  const [frmEditData, setFrmEditData] = useState({});
 
   useEffect(() => {
     async function loadEvents() {
@@ -95,10 +95,10 @@ const EventosPage = () => {
         nomeEvento: nomeEvento,
         descricao: descricao,
         IdTipoEvento: IdTipoEvento,
-        idInstituicao: IdInstituicao
+        idInstituicao: IdInstituicao,
       });
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
   }
 
@@ -106,8 +106,8 @@ const EventosPage = () => {
     setFrmEdit(true);
     try {
       const promise = await api.get(`${eventsResource}/${idElement}`);
-      setIdEvento(promise.data.idEvento)
-      setDataEvento(promise.data.dataEvento.slice(0,10));
+      setIdEvento(promise.data.idEvento);
+      setDataEvento(promise.data.dataEvento.slice(0, 10));
       setNomeEvento(promise.data.nomeEvento);
       setDescricao(promise.data.descricao);
       setIdTipoEvento(promise.data.idTipoEvento);

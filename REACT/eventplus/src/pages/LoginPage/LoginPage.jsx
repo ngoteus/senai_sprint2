@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ImageIllustrator from "../../components/ImageIllustrator/ImageIllustrator";
 import logo from "../../assets/images/logo-pink.svg";
 import { Input, Button } from "../../components/FormComponents/FormComponents";
@@ -8,17 +8,25 @@ import api, { loginResource } from "../../Services/Services"
 
 import "./LoginPage.css";
 import { UserContext, userDecodeToken } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
     const [user, setUser] = useState({email:"adm@adm.com", senha:""})
     const {userData, setUserData}= useContext(UserContext)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (userData.nome) 
+      navigate("/")
+  }, [userData])
+
     async function handleSubmit(e) {
         e.preventDefault();
         console.log("dados de login")
         console.log(user);
    
 
-    if (user.email.length >= 3 && user.senha.length >= 3) {
+    if (user.email.trim().length >= 3 && user.senha.trim().length >= 3) {
         try {
             const promise = await api.post(loginResource, {
                 email: user.email,
@@ -30,11 +38,12 @@ const LoginPage = () => {
             const userFullToken = userDecodeToken(promise.data.token)
             setUserData(userFullToken);
             
-            localStorage.setItem("token", JSON.stringify(userFullToken))
+            localStorage.setItem("token", JSON.stringify(userFullToken));
+            navigate("/")
         } catch (error) {
-            alert("Verifique os dados e a conexao da interet")
+            alert("Verifique os dados e a conexao da internet")
             console.log("erros no login do usuario")
-            console.log(error)
+            console.error(error)
         }
     }
     else {
