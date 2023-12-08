@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import trashDelete from "../../assets/images/trash-delete-red.png";
 
 import { Button, Input } from "../FormComponents/FormComponents";
 import "./Modal.css";
+import { UserContext } from "../../context/AuthContext";
 
 const Modal = ({
   modalTitle = "Feedback",
-  comentaryText = "Não informado. Não informado. Não informado.",
-  userId = null,
+  // comentaryText = "Não informado. Não informado. Não informado.",
+  // userId = null,
   showHideModal = false,
+  fnGet = null,
+  fnPost = null,
   fnDelete = null,
-  fnNewCommentary = null
 
 }) => {
 
+  const {userData} = useContext(UserContext)
+  console.clear()
+  console.log(userData);
+
+  const [postedCommentaryText, setPostedCommentaryText] = useState('');
+  const [comentarioDesc, setComentarioDesc] = useState("")
+
+  async function carregarDados() {
+    const description = await fnGet(userData.userId, userData.idEvento)
+    console.log(description);
+    setPostedCommentaryText(description)
+  }
+
+  useEffect(() => {
+    carregarDados();
+  }, [])
+
+  
   return (
     <div className="modal">
       <article className="modal__box">
@@ -32,7 +52,7 @@ const Modal = ({
             onClick={fnDelete}
           />
 
-          <p className="comentary__text">{comentaryText}</p>
+          <p className="comentary__text">{postedCommentaryText}</p>
 
           <hr className="comentary__separator" />
         </div>
@@ -40,13 +60,20 @@ const Modal = ({
         <Input
           placeholder="Escreva seu comentário..."
           additionalClass="comentary__entry"
+          value={comentarioDesc}
+          manipulationFunction={(e) => {
+            setComentarioDesc(e.target.value)
+          }}
         />
 
         <Button
           buttonText="Comentar"
           additionalClass="comentary__button"
-          manipulationFunction={fnNewCommentary}
+          manipulationFunction={() =>{
+            fnPost(comentarioDesc, userData.userId, userData.idEvento)
+          }}
         />
+
       </article>
     </div>
   );

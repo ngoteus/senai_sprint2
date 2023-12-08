@@ -8,6 +8,7 @@ import { Select } from "../../components/FormComponents/FormComponents";
 import Spinner from "../../components/Spinner/Spinner";
 import Modal from "../../components/Modal/Modal";
 import api, {
+  commentaryEventResource,
   eventsResource,
   eventsTypeResource,
   myEventsResource,
@@ -34,22 +35,32 @@ const EventosAlunoPage = () => {
 
   // recupera os dados globais do usuário
   const { userData, setUserData } = useContext(UserContext);
+  const [ comentario, setComentario ] = useState("");
 
   async function loadEventsType() {
     setShowSpinner(true);
     if (tipoEvento === "1") {
       try {
         const retorno = await api.get(eventsResource);
-        console.log('Todos');
+        const meusEventos = await api.get(
+          `${myEventsResource}/${userData.userId}`
+        );
+
+        const eventosMarcados = verificaPresenca(
+          retorno.data,
+          meusEventos.data
+        );
+        console.log(meusEventos);
+        console.log("Todos");
         console.log(retorno.data);
-        setEventos(retorno.data);
+        setEventos(eventosMarcados);
       } catch (error) {
         console.log("Erro na api1");
         console.log(error);
       }
-    } else if (tipoEvento === "2"){
+    } else if (tipoEvento === "2") {
       try {
-        console.log('Meus');
+        console.log("Meus");
         console.log(`${myEventsResource}/${userData.userId}`);
         const retornoEventos = await api.get(
           `${myEventsResource}/${userData.userId}`
@@ -67,7 +78,7 @@ const EventosAlunoPage = () => {
         console.log("Erro na api2");
         console.log(error);
       }
-    }else {
+    } else {
       setEventos();
     }
     setShowSpinner(false);
@@ -96,38 +107,83 @@ const EventosAlunoPage = () => {
     // loadEvents();
     loadEventsType();
   }, [tipoEvento]);
-  
+
   const verificaPresenca = (arrAllEvents, eventsUser) => {
     for (let x = 0; x < arrAllEvents.length; x++) {
+      arrAllEvents[x].situacao = false;
       for (let i = 0; i < eventsResource.length; i++) {
-        if (arrAllEvents[x].idEvento === eventsUser[i].idEvento) {
+        if (arrAllEvents[x].idEvento === eventsUser[i].evento.idEvento) {
           arrAllEvents[x].situacao = true;
+          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento
           break;
         }
       }
     }
-  }
+    return arrAllEvents;
+  };
   // toggle meus eventos ou todos os eventos
   function myEvents(tpEvent) {
     console.log(tpEvent);
     setTipoEvento(tpEvent);
   }
 
-  async function loadMyComentary(idComentary) {
-    return "????";
-  }
+  const loadMyComentary = async (idUsuario, idEvento) => {
+    const promise = await api.get(
+      `${commentaryEventResource}/BuscarPorIdUsuario/${idUsuario}/${idEvento}`
+    );
 
-  const showHideModal = () => {
+    console.log(`${commentaryEventResource}/BuscarPorIdUsuario/${idUsuario}/${idEvento}`);
+
+    // console.clear();
+    console.log(promise.data.descricao);
+
+    return promise.data.descricao;
+  };
+
+  const postMyComentary = () => {
+    alert("Cadastrar o comentário");
+  };
+  const showHideModal = (idEvent) => {
     setShowModal(showModal ? false : true);
+    setUserData({ ...userData, idEvento: idEvent });
   };
 
   const commentaryRemove = () => {
     alert("Remover o comentário");
   };
 
-  function handleConnect() {
-    alert("Desenvolver a função conectar evento");
+  async function handleConnect(
+    idEvent,
+    whatTheFunction,
+    idPresencaEvento = null
+  ) {
+    // conecta o usuário e atualiza a tela
+    if (whatTheFunction === "connect") {
+      try {
+        const promise = await api.post("/Presencas", {
+          situacao: true,
+          idUsuario: userData.userId,
+          idEvento: idEvent,
+        });
+
+        if (promise.status === 201) {
+          loadEventsType();
+          alert("Presença confirmada, parabéns");
+        }
+      } catch (error) {
+        console.log("Erro ao conectar");
+        console.log(error);
+      }
+      return;
+    }
+    // unconnect - desconecta o usuário e atualiza a listagem
+    const promiseDelete = await api.delete("/Presencas/" + idPresencaEvento);
+    if (promiseDelete.status === 204) {
+      loadEventsType();
+      alert("Desconectado do evento");
+    }
   }
+
   return (
     <>
       <MainContent>
@@ -146,9 +202,7 @@ const EventosAlunoPage = () => {
           <Table
             dados={eventos}
             fnConnect={handleConnect}
-            fnShowModal={() => {
-              showHideModal();
-            }}
+            fnShowModal={showHideModal}
           />
         </Container>
       </MainContent>
@@ -160,7 +214,10 @@ const EventosAlunoPage = () => {
         <Modal
           userId={userData.userId}
           showHideModal={showHideModal}
+          fnGet={loadMyComentary}
+          fnPost={postMyComentary}
           fnDelete={commentaryRemove}
+          conentaryText={comentario}
         />
       ) : null}
     </>

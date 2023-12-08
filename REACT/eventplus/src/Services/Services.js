@@ -5,6 +5,7 @@ export const myEventsResource = '/Presencas/ListarMinhas'
 export const nextEventResource = '/Evento/ListarProximos'
 export const eventsTypeResource = '/TiposEvento'
 export const institutionResource = '/Instituicao'
+export const commentaryEventResource = '/ComentariosEvento'
 export const loginResource = '/Login'
 
 const apiPort = '7118';
