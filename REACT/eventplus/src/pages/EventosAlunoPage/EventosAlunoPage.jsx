@@ -12,10 +12,12 @@ import api, {
   eventsResource,
   eventsTypeResource,
   myEventsResource,
+  presencesEventResource
 } from "../../Services/Services";
 
 import "./EventosAlunoPage.css";
 import { UserContext } from "../../context/AuthContext";
+import userEvent from "@testing-library/user-event";
 
 const EventosAlunoPage = () => {
   // state do menu mobile
@@ -38,9 +40,11 @@ const EventosAlunoPage = () => {
   const [ comentario, setComentario ] = useState("");
 
   async function loadEventsType() {
-    setShowSpinner(true);
+    // setShowSpinner(true);
+
     if (tipoEvento === "1") {
       try {
+<<<<<<< HEAD
         const retorno = await api.get(eventsResource);
         const meusEventos = await api.get(
           `${myEventsResource}/${userData.userId}`
@@ -54,21 +58,60 @@ const EventosAlunoPage = () => {
         console.log("Todos");
         console.log(retorno.data);
         setEventos(eventosMarcados);
+=======
+        const todosEventos = await api.get(eventsResource);
+      const meusEventos = await api.get(
+        `${myEventsResource}/${userData.userId}`
+      )
+      const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data);
+      setEventos(eventosMarcados)
+      console.clear();
+      console.log("TODOS OS EVENTOS");
+      console.log(todosEventos.data);
+      console.log("MEUS EVENTOS")
+      console.log(meusEventos);
+      console.log("EVENTOS MARCADOS")
+      console.log(eventosMarcados)
+>>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
       } catch (error) {
-        console.log("Erro na api1");
+        console.log("Erro na API");
         console.log(error);
       }
     } else if (tipoEvento === "2") {
       try {
+<<<<<<< HEAD
         console.log("Meus");
         console.log(`${myEventsResource}/${userData.userId}`);
+=======
+>>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
         const retornoEventos = await api.get(
-          `${myEventsResource}/${userData.userId}`
+          `${myEventsResourse}/${userData.userId}`
         );
+
+
+  // async function loadEventsType() {
+  //   setShowSpinner(true);
+  //   if (tipoEvento === "1") {
+  //     try {
+  //       const retorno = await api.get(eventsResource);
+  //       console.log('Todos');
+  //       console.log(retorno.data);
+  //       setEventos(retorno.data);
+  //     } catch (error) {
+  //       console.log("Erro na api1");
+  //       console.log(error);
+  //     }
+  //   } else if (tipoEvento === "2"){
+  //     try {
+  //       console.log('Meus');
+  //       console.log(`${myEventsResource}/${userData.userId}`);
+  //       const retornoEventos = await api.get(
+  //         `${myEventsResource}/${userData.userId}`
+  //       );
 
         const arrEventos = [];
         retornoEventos.data.forEach((e) => {
-          arrEventos.push(e.evento);
+          arrEventos.push({...e.eventos,situacao:e.situacao});
         });
 
         console.log(arrEventos);
@@ -104,6 +147,65 @@ const EventosAlunoPage = () => {
   // }
 
   useEffect(() => {
+    async function loadEventsType() {
+      setShowSpinner(true);
+      // setEventos([]); //zera o array de eventos
+      if (tipoEvento === "1") {
+        //todos os eventos (Evento)
+        try {
+          const todosEventos = await api.get(eventsResource);
+          const meusEventos = await api.get(`${myEventsResource}/${userData.userId}`)
+
+          const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data)
+
+          console.clear();
+          console.log("TODOS OS EVENTOS")
+          console.log(todosEventos.data)
+          console.log("MEUS EVENTOS")
+          console.log(meusEventos.data)
+          console.log("EVENTOS  MARCADOS")
+          console.log(eventosMarcados);
+
+
+          setEventos(eventosMarcados)
+
+        } catch (error) {
+          //colocar o notification
+          console.log("Erro na API");
+          console.log(error);
+        }
+      } else if (tipoEvento === "2") {
+        /**
+         * Lista os meus eventos (PresencasEventos) 
+         * retorna um formato diferente de array
+         */
+        try {
+          const retornoEventos = await api.get(
+            `${myEventsResource}/${userData.userId}`
+          );
+          console.clear()
+          console.log("MINHAS PRESENÇAS");
+          console.log(retornoEventos.data);
+
+            const arrEventos = [];//array vazio
+            
+            retornoEventos.data.forEach( e => {
+              arrEventos.push(e.evento); 
+            });
+
+            // console.log(arrEventos);
+          setEventos(arrEventos);
+        } catch (error) {
+          //colocar o notification
+          console.log("Erro na API");
+          console.log(error);
+        }
+      } else {
+        setEventos([]);
+      }
+      setShowSpinner(false);
+    }
+
     // loadEvents();
     loadEventsType();
   }, [tipoEvento]);
@@ -114,7 +216,11 @@ const EventosAlunoPage = () => {
       for (let i = 0; i < eventsResource.length; i++) {
         if (arrAllEvents[x].idEvento === eventsUser[i].evento.idEvento) {
           arrAllEvents[x].situacao = true;
+<<<<<<< HEAD
           arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento
+=======
+          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
+>>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
           break;
         }
       }
@@ -152,6 +258,7 @@ const EventosAlunoPage = () => {
     alert("Remover o comentário");
   };
 
+<<<<<<< HEAD
   async function handleConnect(
     idEvent,
     whatTheFunction,
@@ -184,6 +291,48 @@ const EventosAlunoPage = () => {
     }
   }
 
+=======
+  async function handleConnect(eventId,whatTheFunction,presencaId = null) {
+    if (whatTheFunction === "connect"){
+
+      // {
+  
+      //   "situacao": true,
+      //   "idUsuario": "7032a779-bcbb-4c9c-a651-1fcf90eae853",
+      //   "idEvento": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      // }
+  
+      try {
+        const promise = await api.post(presencesEventResource,{
+          situacao:true,
+          idUsuario : userData.userId,
+          idEvento:eventId
+        })
+        if (promise.status === 201) {
+          alert("Presença confirmada, parabéns")
+        }
+  
+      } catch (error) {
+        
+      }
+  
+      try {
+        const unconnected = await api.delete(`${presencesEventResource}/${presencaId}`);
+        if (unconnected.status === 204){
+          const todosEventos = await api.get(eventsResourse);
+          setEventos(todosEventos.data)
+        }
+  
+      } catch (error) {
+        
+      }
+  
+      alert("CONECTAR AO EVENTO" + eventId);
+      return
+    }
+    alert("DESCONECTAR EVENTO " + eventId)
+    }
+>>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
   return (
     <>
       <MainContent>

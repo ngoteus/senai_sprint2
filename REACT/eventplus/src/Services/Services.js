@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const eventsResource = '/Evento'
 export const myEventsResource = '/Presencas/ListarMinhas'
+export const presencesEventResource = '/Presencas'
 export const nextEventResource = '/Evento/ListarProximos'
 export const eventsTypeResource = '/TiposEvento'
 export const institutionResource = '/Instituicao'
