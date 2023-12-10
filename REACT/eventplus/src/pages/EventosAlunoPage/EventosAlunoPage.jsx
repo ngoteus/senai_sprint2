@@ -44,7 +44,7 @@ const EventosAlunoPage = () => {
 
     if (tipoEvento === "1") {
       try {
-<<<<<<< HEAD
+
         const retorno = await api.get(eventsResource);
         const meusEventos = await api.get(
           `${myEventsResource}/${userData.userId}`
@@ -58,35 +58,34 @@ const EventosAlunoPage = () => {
         console.log("Todos");
         console.log(retorno.data);
         setEventos(eventosMarcados);
-=======
-        const todosEventos = await api.get(eventsResource);
-      const meusEventos = await api.get(
-        `${myEventsResource}/${userData.userId}`
-      )
-      const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data);
-      setEventos(eventosMarcados)
-      console.clear();
-      console.log("TODOS OS EVENTOS");
-      console.log(todosEventos.data);
-      console.log("MEUS EVENTOS")
-      console.log(meusEventos);
-      console.log("EVENTOS MARCADOS")
-      console.log(eventosMarcados)
->>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
+
+//         const todosEventos = await api.get(eventsResource);
+//       const meusEventos = await api.get(
+//         `${myEventsResource}/${userData.userId}`
+//       )
+//       const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data);
+//       setEventos(eventosMarcados)
+//       console.clear();
+//       console.log("TODOS OS EVENTOS");
+//       console.log(todosEventos.data);
+//       console.log("MEUS EVENTOS")
+//       console.log(meusEventos);
+//       console.log("EVENTOS MARCADOS")
+//       console.log(eventosMarcados)
+
       } catch (error) {
         console.log("Erro na API");
         console.log(error);
       }
     } else if (tipoEvento === "2") {
       try {
-<<<<<<< HEAD
+
         console.log("Meus");
         console.log(`${myEventsResource}/${userData.userId}`);
-=======
->>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
-        const retornoEventos = await api.get(
-          `${myEventsResourse}/${userData.userId}`
-        );
+
+        // const retornoEventos = await api.get(
+        //   `${myEventsResourse}/${userData.userId}`
+        // );
 
 
   // async function loadEventsType() {
@@ -216,11 +215,11 @@ const EventosAlunoPage = () => {
       for (let i = 0; i < eventsResource.length; i++) {
         if (arrAllEvents[x].idEvento === eventsUser[i].evento.idEvento) {
           arrAllEvents[x].situacao = true;
-<<<<<<< HEAD
+
           arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento
-=======
-          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
->>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
+
+          // arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
+
           break;
         }
       }
@@ -258,7 +257,7 @@ const EventosAlunoPage = () => {
     alert("Remover o comentário");
   };
 
-<<<<<<< HEAD
+
   async function handleConnect(
     idEvent,
     whatTheFunction,
@@ -291,48 +290,48 @@ const EventosAlunoPage = () => {
     }
   }
 
-=======
-  async function handleConnect(eventId,whatTheFunction,presencaId = null) {
-    if (whatTheFunction === "connect"){
 
-      // {
+  // async function handleConnect(eventId,whatTheFunction,presencaId = null) {
+  //   if (whatTheFunction === "connect"){
+
+  //     // {
   
-      //   "situacao": true,
-      //   "idUsuario": "7032a779-bcbb-4c9c-a651-1fcf90eae853",
-      //   "idEvento": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-      // }
+  //     //   "situacao": true,
+  //     //   "idUsuario": "7032a779-bcbb-4c9c-a651-1fcf90eae853",
+  //     //   "idEvento": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  //     // }
   
-      try {
-        const promise = await api.post(presencesEventResource,{
-          situacao:true,
-          idUsuario : userData.userId,
-          idEvento:eventId
-        })
-        if (promise.status === 201) {
-          alert("Presença confirmada, parabéns")
-        }
+  //     try {
+  //       const promise = await api.post(presencesEventResource,{
+  //         situacao:true,
+  //         idUsuario : userData.userId,
+  //         idEvento:eventId
+  //       })
+  //       if (promise.status === 201) {
+  //         alert("Presença confirmada, parabéns")
+  //       }
   
-      } catch (error) {
+  //     } catch (error) {
         
-      }
+  //     }
   
-      try {
-        const unconnected = await api.delete(`${presencesEventResource}/${presencaId}`);
-        if (unconnected.status === 204){
-          const todosEventos = await api.get(eventsResourse);
-          setEventos(todosEventos.data)
-        }
+  //     try {
+  //       const unconnected = await api.delete(`${presencesEventResource}/${presencaId}`);
+  //       if (unconnected.status === 204){
+  //         const todosEventos = await api.get(eventsResourse);
+  //         setEventos(todosEventos.data)
+  //       }
   
-      } catch (error) {
+  //     } catch (error) {
         
-      }
+  //     }
   
-      alert("CONECTAR AO EVENTO" + eventId);
-      return
-    }
-    alert("DESCONECTAR EVENTO " + eventId)
-    }
->>>>>>> 797c0665bcc6d35fdac78a7791bcd729da30a63f
+  //     alert("CONECTAR AO EVENTO" + eventId);
+  //     return
+  //   }
+  //   alert("DESCONECTAR EVENTO " + eventId)
+  //   }
+
   return (
     <>
       <MainContent>
