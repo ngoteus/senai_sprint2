@@ -12,7 +12,7 @@ import api, {
   eventsResource,
   eventsTypeResource,
   myEventsResource,
-  presencesEventResource
+  presencesEventResource,
 } from "../../Services/Services";
 
 import "./EventosAlunoPage.css";
@@ -37,14 +37,13 @@ const EventosAlunoPage = () => {
 
   // recupera os dados globais do usuário
   const { userData, setUserData } = useContext(UserContext);
-  const [ comentario, setComentario ] = useState("");
+  const [comentario, setComentario] = useState("");
 
   async function loadEventsType() {
     // setShowSpinner(true);
 
     if (tipoEvento === "1") {
       try {
-
         const retorno = await api.get(eventsResource);
         const meusEventos = await api.get(
           `${myEventsResource}/${userData.userId}`
@@ -59,58 +58,59 @@ const EventosAlunoPage = () => {
         console.log(retorno.data);
         setEventos(eventosMarcados);
 
-//         const todosEventos = await api.get(eventsResource);
-//       const meusEventos = await api.get(
-//         `${myEventsResource}/${userData.userId}`
-//       )
-//       const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data);
-//       setEventos(eventosMarcados)
-//       console.clear();
-//       console.log("TODOS OS EVENTOS");
-//       console.log(todosEventos.data);
-//       console.log("MEUS EVENTOS")
-//       console.log(meusEventos);
-//       console.log("EVENTOS MARCADOS")
-//       console.log(eventosMarcados)
-
+        //         const todosEventos = await api.get(eventsResource);
+        //       const meusEventos = await api.get(
+        //         `${myEventsResource}/${userData.userId}`
+        //       )
+        //       const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data);
+        //       setEventos(eventosMarcados)
+        //       console.clear();
+        //       console.log("TODOS OS EVENTOS");
+        //       console.log(todosEventos.data);
+        //       console.log("MEUS EVENTOS")
+        //       console.log(meusEventos);
+        //       console.log("EVENTOS MARCADOS")
+        //       console.log(eventosMarcados)
       } catch (error) {
         console.log("Erro na API");
         console.log(error);
       }
     } else if (tipoEvento === "2") {
       try {
+        const retornoEventos = await api.get(
+          `${myEventsResource}/${userData.userId}`
+        );
 
-        console.log("Meus");
-        console.log(`${myEventsResource}/${userData.userId}`);
+        // console.log("Meus");
+        // console.log(`${myEventsResource}/${userData.userId}`);
 
         // const retornoEventos = await api.get(
         //   `${myEventsResourse}/${userData.userId}`
         // );
 
-
-  // async function loadEventsType() {
-  //   setShowSpinner(true);
-  //   if (tipoEvento === "1") {
-  //     try {
-  //       const retorno = await api.get(eventsResource);
-  //       console.log('Todos');
-  //       console.log(retorno.data);
-  //       setEventos(retorno.data);
-  //     } catch (error) {
-  //       console.log("Erro na api1");
-  //       console.log(error);
-  //     }
-  //   } else if (tipoEvento === "2"){
-  //     try {
-  //       console.log('Meus');
-  //       console.log(`${myEventsResource}/${userData.userId}`);
-  //       const retornoEventos = await api.get(
-  //         `${myEventsResource}/${userData.userId}`
-  //       );
+        // async function loadEventsType() {
+        //   setShowSpinner(true);
+        //   if (tipoEvento === "1") {
+        //     try {
+        //       const retorno = await api.get(eventsResource);
+        //       console.log('Todos');
+        //       console.log(retorno.data);
+        //       setEventos(retorno.data);
+        //     } catch (error) {
+        //       console.log("Erro na api1");
+        //       console.log(error);
+        //     }
+        //   } else if (tipoEvento === "2"){
+        //     try {
+        //       console.log('Meus');
+        //       console.log(`${myEventsResource}/${userData.userId}`);
+        //       const retornoEventos = await api.get(
+        //         `${myEventsResource}/${userData.userId}`
+        //       );
 
         const arrEventos = [];
         retornoEventos.data.forEach((e) => {
-          arrEventos.push({...e.eventos,situacao:e.situacao});
+          arrEventos.push({ ...e.eventos, situacao: e.situacao });
         });
 
         console.log(arrEventos);
@@ -153,21 +153,24 @@ const EventosAlunoPage = () => {
         //todos os eventos (Evento)
         try {
           const todosEventos = await api.get(eventsResource);
-          const meusEventos = await api.get(`${myEventsResource}/${userData.userId}`)
+          const meusEventos = await api.get(
+            `${myEventsResource}/${userData.userId}`
+          );
 
-          const eventosMarcados = verificaPresenca(todosEventos.data,meusEventos.data)
+          const eventosMarcados = verificaPresenca(
+            todosEventos.data,
+            meusEventos.data
+          );
 
           console.clear();
-          console.log("TODOS OS EVENTOS")
-          console.log(todosEventos.data)
-          console.log("MEUS EVENTOS")
-          console.log(meusEventos.data)
-          console.log("EVENTOS  MARCADOS")
+          console.log("TODOS OS EVENTOS");
+          console.log(todosEventos.data);
+          console.log("MEUS EVENTOS");
+          console.log(meusEventos.data);
+          console.log("EVENTOS  MARCADOS");
           console.log(eventosMarcados);
 
-
-          setEventos(eventosMarcados)
-
+          setEventos(eventosMarcados);
         } catch (error) {
           //colocar o notification
           console.log("Erro na API");
@@ -175,24 +178,24 @@ const EventosAlunoPage = () => {
         }
       } else if (tipoEvento === "2") {
         /**
-         * Lista os meus eventos (PresencasEventos) 
+         * Lista os meus eventos (PresencasEventos)
          * retorna um formato diferente de array
          */
         try {
           const retornoEventos = await api.get(
             `${myEventsResource}/${userData.userId}`
           );
-          console.clear()
+          console.clear();
           console.log("MINHAS PRESENÇAS");
           console.log(retornoEventos.data);
 
-            const arrEventos = [];//array vazio
-            
-            retornoEventos.data.forEach( e => {
-              arrEventos.push(e.evento); 
-            });
+          const arrEventos = []; //array vazio
 
-            // console.log(arrEventos);
+          retornoEventos.data.forEach((e) => {
+            arrEventos.push(e.evento);
+          });
+
+          // console.log(arrEventos);
           setEventos(arrEventos);
         } catch (error) {
           //colocar o notification
@@ -216,7 +219,7 @@ const EventosAlunoPage = () => {
         if (arrAllEvents[x].idEvento === eventsUser[i].evento.idEvento) {
           arrAllEvents[x].situacao = true;
 
-          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento
+          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
 
           // arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
 
@@ -237,7 +240,9 @@ const EventosAlunoPage = () => {
       `${commentaryEventResource}/BuscarPorIdUsuario/${idUsuario}/${idEvento}`
     );
 
-    console.log(`${commentaryEventResource}/BuscarPorIdUsuario/${idUsuario}/${idEvento}`);
+    console.log(
+      `${commentaryEventResource}/BuscarPorIdUsuario/${idUsuario}/${idEvento}`
+    );
 
     // console.clear();
     console.log(promise.data.descricao);
@@ -256,7 +261,6 @@ const EventosAlunoPage = () => {
   const commentaryRemove = () => {
     alert("Remover o comentário");
   };
-
 
   async function handleConnect(
     idEvent,
@@ -290,17 +294,16 @@ const EventosAlunoPage = () => {
     }
   }
 
-
   // async function handleConnect(eventId,whatTheFunction,presencaId = null) {
   //   if (whatTheFunction === "connect"){
 
   //     // {
-  
+
   //     //   "situacao": true,
   //     //   "idUsuario": "7032a779-bcbb-4c9c-a651-1fcf90eae853",
   //     //   "idEvento": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
   //     // }
-  
+
   //     try {
   //       const promise = await api.post(presencesEventResource,{
   //         situacao:true,
@@ -310,22 +313,22 @@ const EventosAlunoPage = () => {
   //       if (promise.status === 201) {
   //         alert("Presença confirmada, parabéns")
   //       }
-  
+
   //     } catch (error) {
-        
+
   //     }
-  
+
   //     try {
   //       const unconnected = await api.delete(`${presencesEventResource}/${presencaId}`);
   //       if (unconnected.status === 204){
   //         const todosEventos = await api.get(eventsResourse);
   //         setEventos(todosEventos.data)
   //       }
-  
+
   //     } catch (error) {
-        
+
   //     }
-  
+
   //     alert("CONECTAR AO EVENTO" + eventId);
   //     return
   //   }
