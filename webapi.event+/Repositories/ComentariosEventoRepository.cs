@@ -70,6 +70,34 @@ namespace webapi.event_.Repositories
             {
                 throw;
             }
+        }public ComentariosEvento BuscarPorIdEvento(Guid idEvento)
+        {
+            try
+            {
+                return _context.ComentariosEvento
+                    .Select(c => new ComentariosEvento
+                    {
+                        IdComentarioEvento = c.IdComentarioEvento,
+                        Descricao = c.Descricao,
+                        Exibe = c.Exibe,
+                        IdEvento = c.IdEvento,
+
+                        Usuario = new Usuario
+                        {
+                            Nome = c.Usuario!.Nome
+                        },
+
+                        Evento = new Evento
+                        {
+                            NomeEvento = c.Evento!.NomeEvento,
+                        }
+
+                    }).FirstOrDefault(c => c.IdEvento == idEvento)!;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Cadastrar(ComentariosEvento comentarioEvento)

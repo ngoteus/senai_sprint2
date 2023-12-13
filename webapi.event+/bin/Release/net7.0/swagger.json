@@ -114,6 +114,27 @@
         }
       }
     },
+    "/api/ComentariosEvento/BuscarPorIdEvento/{idEvento}": {
+      "get": {
+        "tags": [
+          "ComentariosEvento"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idEvento",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/ComentariosEvento/(id)": {
       "delete": {
         "tags": [
@@ -173,6 +194,18 @@
       }
     },
     "/api/Evento/ListarProximos": {
+      "get": {
+        "tags": [
+          "Evento"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Evento/ListarAnteriores": {
       "get": {
         "tags": [
           "Evento"

@@ -30,7 +30,6 @@ namespace webapi.event_.Controllers
                 return BadRequest(e.Message);
             }
         }
-
         [HttpGet("ListarProximos")]
         public IActionResult GetNextEvents()
         {
@@ -43,6 +42,20 @@ namespace webapi.event_.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("ListarAnteriores")]
+        public IActionResult GetPastEvents()
+        {
+            try
+            {
+                return Ok(_eventoRepository.ListarAnteriores());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)

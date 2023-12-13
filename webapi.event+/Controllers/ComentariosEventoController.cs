@@ -99,6 +99,17 @@ namespace webapi.event_.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }[HttpGet("BuscarPorIdEvento/{idEvento}")]
+        public IActionResult GetbyIdEvent(Guid idEvento)
+        {
+            try
+            {
+                return Ok(comentario.BuscarPorIdEvento(idEvento));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
