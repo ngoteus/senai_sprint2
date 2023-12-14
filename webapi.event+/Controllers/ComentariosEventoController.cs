@@ -99,7 +99,9 @@ namespace webapi.event_.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }[HttpGet("BuscarPorIdEvento/{idEvento}")]
+        }
+
+        [HttpGet("BuscarPorIdEvento/{idEvento}")]
         public IActionResult GetbyIdEvent(Guid idEvento)
         {
             try
@@ -110,7 +112,21 @@ namespace webapi.event_.Controllers
             {
                 return BadRequest(e.Message);
             }
+        } [HttpGet("BuscarPorIdEvento/{idEvento}")]
+
+
+        public IActionResult GetbyIdEventExibe(Guid idEvento)
+        {
+            try
+            {
+                return Ok(comentario.BuscarPorIdEventoExibe(idEvento));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
+
 
         [HttpPost]
         public IActionResult Post(ComentariosEvento novoComentario)
